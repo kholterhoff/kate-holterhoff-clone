@@ -29,7 +29,7 @@ export default function Home() {
               <div className="relative floating-content">
                 <div className="profile-image-container">
                   <Image
-                    src="/kate-profile-new.jpg"
+                    src="/kate-profile-new.png"
                     alt="Kate Holterhoff"
                     width={300}
                     height={300}
