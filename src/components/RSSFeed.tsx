@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 
 interface RSSItem {
@@ -18,130 +17,118 @@ export default function RSSFeed() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
+  // Fallback posts based on actual RedMonk content
+  const fallbackPosts: RSSItem[] = [
+    {
+      title: "Optimizing JavaScript Delivery: Signals v React Compiler",
+      link: "https://redmonk.com/kholterhoff/2025/05/13/javascript-signals-react-compiler/",
+      description: "JavaScript in 2025 isn't exactly lightweight. Shipping JS code involves managing browser quirks, massive bundle sizes, hydration woes, and performance tuning that can sometimes feel like black magic to developers...",
+      pubDate: "Tue, 13 May 2025 15:36:41 +0000"
+    },
+    {
+      title: "The Problem of JavaScript Code Delivery",
+      link: "https://redmonk.com/kholterhoff/2024/06/25/the-problem-of-javascript-code-delivery/",
+      description: "An analysis of current challenges in JavaScript application delivery and modern solutions to improve performance and developer experience...",
+      pubDate: "Tue, 25 Jun 2024 10:00:00 +0000"
+    },
+    {
+      title: "React Just Changed Forever",
+      link: "https://redmonk.com/kholterhoff/",
+      description: "React has never really thought about build tools too much. Historically React has just been the runtime. With Server Components they moved to the server, but with React Compiler they're moving to build...",
+      pubDate: "Wed, 15 May 2024 10:00:00 +0000"
+    }
+  ]
+
   useEffect(() => {
     const fetchRSS = async () => {
+      // Start with fallback data to show content immediately
+      setPosts(fallbackPosts)
+      setLoading(false)
+
+      // Then try to fetch real RSS data in the background
       try {
-        // Try multiple CORS proxy services for better reliability
-        const corsProxies = [
-          `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://redmonk.com/kholterhoff/feed/')}`,
-          `https://api.allorigins.win/get?url=${encodeURIComponent('https://redmonk.com/kholterhoff/feed/')}`,
-          `https://corsproxy.io/?${encodeURIComponent('https://redmonk.com/kholterhoff/feed/')}`
-        ]
+        console.log('Attempting to fetch RSS feed...')
 
-        let response: Response | null = null
-        let data: any = null
-        let isRss2Json = false
+        // Try RSS2JSON first (most reliable for this use case)
+        const rss2jsonUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://redmonk.com/kholterhoff/feed/')}`
 
-        // Try each proxy until one works
-        for (const proxyUrl of corsProxies) {
-          try {
-            response = await fetch(proxyUrl)
-            if (response.ok) {
-              if (proxyUrl.includes('rss2json.com')) {
-                const jsonData = await response.json()
-                if (jsonData.status === 'ok' && jsonData.items) {
-                  // Convert RSS2JSON format to our expected format
-                  const feedItems: RSSItem[] = []
-                  for (let i = 0; i < Math.min(jsonData.items.length, 5); i++) {
-                    const item = jsonData.items[i]
-                    feedItems.push({
-                      title: item.title || '',
-                      link: item.link || '',
-                      description: (item.description || '').replace(/<[^>]*>/g, '').substring(0, 150) + '...',
-                      pubDate: item.pubDate || '',
-                      content: item.content || item.description
-                    })
-                  }
-                  setPosts(feedItems)
-                  return // Success, exit early
-                }
-              } else if (proxyUrl.includes('allorigins.win')) {
-                data = await response.json()
-                data = data.contents // Extract contents from allorigins response
-              } else {
-                data = await response.text()
-              }
-              if (data) break
+        const response = await fetch(rss2jsonUrl)
+        if (response.ok) {
+          const jsonData = await response.json()
+          console.log('RSS2JSON response status:', jsonData.status)
+
+          if (jsonData.status === 'ok' && jsonData.items && jsonData.items.length > 0) {
+            console.log('Successfully fetched RSS data, updating posts')
+
+            // Convert RSS2JSON format to our expected format
+            const feedItems: RSSItem[] = []
+            for (let i = 0; i < Math.min(jsonData.items.length, 5); i++) {
+              const item = jsonData.items[i]
+              feedItems.push({
+                title: item.title || '',
+                link: item.link || '',
+                description: (item.description || '').replace(/<[^>]*>/g, '').substring(0, 150) + '...',
+                pubDate: item.pubDate || '',
+                content: item.content || item.description
+              })
             }
-          } catch (proxyErr) {
-            console.warn('Proxy failed:', proxyUrl, proxyErr)
-            continue
+            setPosts(feedItems)
+            setError(null)
+            return
           }
         }
 
-        if (!data) {
-          throw new Error('All CORS proxies failed')
+        // If RSS2JSON fails, try AllOrigins as backup
+        console.log('RSS2JSON failed, trying AllOrigins...')
+        const allOriginsUrl = `https://api.allorigins.win/get?url=${encodeURIComponent('https://redmonk.com/kholterhoff/feed/')}`
+
+        const allOriginsResponse = await fetch(allOriginsUrl)
+        if (allOriginsResponse.ok) {
+          const data = await allOriginsResponse.json()
+
+          // Parse the XML
+          const parser = new DOMParser()
+          const xmlDoc = parser.parseFromString(data.contents, 'text/xml')
+
+          // Check if parsing was successful
+          const parserError = xmlDoc.querySelector('parsererror')
+          if (parserError) {
+            throw new Error('XML parsing failed')
+          }
+
+          const items = xmlDoc.querySelectorAll('item')
+          if (items.length > 0) {
+            console.log('Successfully parsed XML RSS data')
+
+            const feedItems: RSSItem[] = []
+            for (let i = 0; i < Math.min(items.length, 5); i++) {
+              const item = items[i]
+              const title = item.querySelector('title')?.textContent || ''
+              const link = item.querySelector('link')?.textContent || ''
+              const description = item.querySelector('description')?.textContent || ''
+              const pubDate = item.querySelector('pubDate')?.textContent || ''
+
+              feedItems.push({
+                title: title.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>'),
+                link,
+                description: description.replace(/<[^>]*>/g, '').substring(0, 150) + '...',
+                pubDate,
+                content: description
+              })
+            }
+            setPosts(feedItems)
+            setError(null)
+            return
+          }
         }
 
-        // Parse the XML
-        const parser = new DOMParser()
-        const xmlDoc = parser.parseFromString(data, 'text/xml')
+        // If all methods fail, keep fallback data but log the attempt
+        console.log('All RSS fetch methods failed, keeping fallback data')
 
-        // Check if parsing was successful
-        const parserError = xmlDoc.querySelector('parsererror')
-        if (parserError) {
-          throw new Error('XML parsing failed')
-        }
-
-        const items = xmlDoc.querySelectorAll('item')
-        const feedItems: RSSItem[] = []
-
-        if (items.length === 0) {
-          throw new Error('No RSS items found')
-        }
-
-        for (let i = 0; i < Math.min(items.length, 5); i++) {
-          const item = items[i]
-          const title = item.querySelector('title')?.textContent || ''
-          const link = item.querySelector('link')?.textContent || ''
-          const description = item.querySelector('description')?.textContent || ''
-          const pubDate = item.querySelector('pubDate')?.textContent || ''
-
-          // Extract image from content if available
-          const content = item.querySelector('content\\:encoded, encoded')?.textContent || description
-          const imgMatch = content.match(/<img[^>]+src="([^">]+)"/i)
-          const image = imgMatch ? imgMatch[1] : null
-
-          feedItems.push({
-            title: title.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>'),
-            link,
-            description: description.replace(/<[^>]*>/g, '').substring(0, 150) + '...',
-            pubDate,
-            image: image || undefined,
-            content
-          })
-        }
-
-        setPosts(feedItems)
       } catch (err) {
         console.error('RSS fetch error:', err)
-
-        // Fallback to actual recent posts if RSS fails
-        const fallbackPosts: RSSItem[] = [
-          {
-            title: "Optimizing JavaScript Delivery: Signals v React Compiler",
-            link: "https://redmonk.com/kholterhoff/2025/05/13/javascript-signals-react-compiler/",
-            description: "JavaScript in 2025 isn't exactly lightweight. Shipping JS code involves managing browser quirks, massive bundle sizes, hydration woes, and performance tuning that can sometimes feel like black magic to developers...",
-            pubDate: "Tue, 13 May 2025 15:36:41 +0000"
-          },
-          {
-            title: "The Problem of JavaScript Code Delivery",
-            link: "https://redmonk.com/kholterhoff/2024/06/25/the-problem-of-javascript-code-delivery/",
-            description: "An analysis of current challenges in JavaScript application delivery and modern solutions to improve performance and developer experience...",
-            pubDate: "Tue, 25 Jun 2024 10:00:00 +0000"
-          },
-          {
-            title: "React Just Changed Forever",
-            link: "https://redmonk.com/kholterhoff/",
-            description: "React has never really thought about build tools too much. Historically React has just been the runtime. With Server Components they moved to the server, but with React Compiler they're moving to build...",
-            pubDate: "Wed, 15 May 2024 10:00:00 +0000"
-          }
-        ]
-
-        setPosts(fallbackPosts)
-        setError(null) // Don't show error, just use fallback data
-      } finally {
-        setLoading(false)
+        // Keep fallback data, don't show error to user
+        setError(null)
       }
     }
 
@@ -214,7 +201,7 @@ export default function RSSFeed() {
             <article className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group-hover:border-coral/30">
               <div className="p-6">
                 <div className="flex gap-4">
-                  {/* Placeholder image or RedMonk logo */}
+                  {/* RedMonk logo placeholder */}
                   <div className="flex-shrink-0">
                     <div className="w-24 h-24 bg-gradient-to-br from-coral to-orange rounded-lg flex items-center justify-center">
                       <span className="text-white font-bold text-sm">RM</span>
