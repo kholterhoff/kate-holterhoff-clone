@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface RSSItem {
   title: string
@@ -24,7 +25,8 @@ export default function RSSFeed() {
       title: "Optimizing JavaScript Delivery: Signals v React Compiler",
       link: "https://redmonk.com/kholterhoff/2025/05/13/javascript-signals-react-compiler/",
       description: "JavaScript in 2025 isn't exactly lightweight. Shipping JS code involves managing browser quirks, massive bundle sizes, hydration woes, and performance tuning that can sometimes feel like black magic to developers...",
-      pubDate: "Tue, 13 May 2025 15:36:41 +0000"
+      pubDate: "Tue, 13 May 2025 15:36:41 +0000",
+      image: "https://redmonk.com/kholterhoff/files/2025/05/chefingredients-scaled.jpeg"
     },
     {
       title: "The Problem of JavaScript Code Delivery",
@@ -65,11 +67,33 @@ export default function RSSFeed() {
             const feedItems: RSSItem[] = []
             for (let i = 0; i < Math.min(jsonData.items.length, 5); i++) {
               const item = jsonData.items[i]
+
+              // Extract image from content or use enclosure/thumbnail
+              let imageUrl = null
+
+              // Try to get image from enclosure first (RSS standard)
+              if (item.enclosure && item.enclosure.link && item.enclosure.type?.startsWith('image/')) {
+                imageUrl = item.enclosure.link
+              }
+              // Try thumbnail (RSS2JSON format)
+              else if (item.thumbnail) {
+                imageUrl = item.thumbnail
+              }
+              // Extract from content/description HTML
+              else {
+                const content = item.content || item.description || ''
+                const imgMatch = content.match(/<img[^>]+src=['""]([^'"">]+)['""][^>]*>/i)
+                if (imgMatch && imgMatch[1]) {
+                  imageUrl = imgMatch[1]
+                }
+              }
+
               feedItems.push({
                 title: item.title || '',
                 link: item.link || '',
                 description: (item.description || '').replace(/<[^>]*>/g, '').substring(0, 150) + '...',
                 pubDate: item.pubDate || '',
+                image: imageUrl || undefined,
                 content: item.content || item.description
               })
             }
@@ -251,11 +275,31 @@ export default function RSSFeed() {
             <article className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group-hover:border-coral/30">
               <div className="p-6">
                 <div className="flex gap-4">
-                  {/* RedMonk logo placeholder */}
+                  {/* Post featured image */}
                   <div className="flex-shrink-0">
-                    <div className="w-24 h-24 bg-gradient-to-br from-coral to-orange rounded-lg flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">RM</span>
-                    </div>
+                    {post.image ? (
+                      <div className="w-24 h-24 rounded-lg overflow-hidden bg-gray-100">
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          onError={(e) => {
+                            // Fallback to RedMonk logo if image fails to load
+                            const target = e.target as HTMLImageElement
+                            target.style.display = 'none'
+                            const fallback = target.nextElementSibling as HTMLElement
+                            if (fallback) fallback.style.display = 'flex'
+                          }}
+                        />
+                        <div className="w-full h-full bg-gradient-to-br from-coral to-orange rounded-lg flex items-center justify-center" style={{ display: 'none' }}>
+                          <span className="text-white font-bold text-sm">RM</span>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="w-24 h-24 bg-gradient-to-br from-coral to-orange rounded-lg flex items-center justify-center">
+                        <span className="text-white font-bold text-sm">RM</span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="flex-1 min-w-0">

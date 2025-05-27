@@ -24,7 +24,8 @@ const fallbackData: RSSData = {
       title: "Optimizing JavaScript Delivery: Signals v React Compiler",
       link: "https://redmonk.com/kholterhoff/2025/05/13/javascript-signals-react-compiler/",
       description: "JavaScript in 2025 isn't exactly lightweight. Shipping JS code involves managing browser quirks, massive bundle sizes, hydration woes, and performance tuning that can sometimes feel like black magic to developers...",
-      pubDate: "Tue, 13 May 2025 15:36:41 +0000"
+      pubDate: "Tue, 13 May 2025 15:36:41 +0000",
+      image: "https://redmonk.com/kholterhoff/files/2025/05/chefingredients-scaled.jpeg"
     },
     {
       title: "The Problem of JavaScript Code Delivery",

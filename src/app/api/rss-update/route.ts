@@ -29,11 +29,33 @@ export async function GET(request: NextRequest) {
       const feedItems: RSSItem[] = []
       for (let i = 0; i < Math.min(jsonData.items.length, 5); i++) {
         const item = jsonData.items[i]
+
+        // Extract image from content or use enclosure/thumbnail
+        let imageUrl = null
+
+        // Try to get image from enclosure first (RSS standard)
+        if (item.enclosure && item.enclosure.link && item.enclosure.type?.startsWith('image/')) {
+          imageUrl = item.enclosure.link
+        }
+        // Try thumbnail (RSS2JSON format)
+        else if (item.thumbnail) {
+          imageUrl = item.thumbnail
+        }
+        // Extract from content/description HTML
+        else {
+          const content = item.content || item.description || ''
+          const imgMatch = content.match(/<img[^>]+src=['""]([^'"">]+)['""][^>]*>/i)
+          if (imgMatch && imgMatch[1]) {
+            imageUrl = imgMatch[1]
+          }
+        }
+
         feedItems.push({
           title: item.title || '',
           link: item.link || '',
           description: (item.description || '').replace(/<[^>]*>/g, '').substring(0, 150) + '...',
           pubDate: item.pubDate || '',
+          image: imageUrl || undefined,
           content: item.content || item.description
         })
       }
