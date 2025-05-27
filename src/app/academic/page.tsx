@@ -8,13 +8,6 @@ export default function Academic() {
     <div className="min-h-screen flex flex-col">
       <Navigation />
 
-      {/* Hero Section with Gradient Background */}
-      <header className="hero-gradient py-16 md:py-24 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold text-white">
-          academic
-        </h1>
-      </header>
-
       {/* Main Content */}
       <main className="flex-1 container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
