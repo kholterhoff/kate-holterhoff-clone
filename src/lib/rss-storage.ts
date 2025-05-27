@@ -6,6 +6,7 @@ interface RSSItem {
   link: string
   description: string
   pubDate: string
+  image?: string
   content?: string
 }
 
