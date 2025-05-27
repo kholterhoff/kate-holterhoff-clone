@@ -13,34 +13,35 @@ interface RSSItem {
   content?: string
 }
 
+// Fallback posts based on actual RedMonk content
+const fallbackPosts: RSSItem[] = [
+  {
+    title: "Optimizing JavaScript Delivery: Signals v React Compiler",
+    link: "https://redmonk.com/kholterhoff/2025/05/13/javascript-signals-react-compiler/",
+    description: "JavaScript in 2025 isn't exactly lightweight. Shipping JS code involves managing browser quirks, massive bundle sizes, hydration woes, and performance tuning that can sometimes feel like black magic to developers...",
+    pubDate: "Tue, 13 May 2025 15:36:41 +0000",
+    image: "https://redmonk.com/kholterhoff/files/2025/05/chefingredients-scaled.jpeg"
+  },
+  {
+    title: "The Problem of JavaScript Code Delivery",
+    link: "https://redmonk.com/kholterhoff/2024/06/25/the-problem-of-javascript-code-delivery/",
+    description: "An analysis of current challenges in JavaScript application delivery and modern solutions to improve performance and developer experience...",
+    pubDate: "Tue, 25 Jun 2024 10:00:00 +0000"
+  },
+  {
+    title: "React Just Changed Forever",
+    link: "https://redmonk.com/kholterhoff/",
+    description: "React has never really thought about build tools too much. Historically React has just been the runtime. With Server Components they moved to the server, but with React Compiler they're moving to build...",
+    pubDate: "Wed, 15 May 2024 10:00:00 +0000"
+  }
+]
+
 export default function RSSFeed() {
   const [posts, setPosts] = useState<RSSItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [updating, setUpdating] = useState(false)
 
-  // Fallback posts based on actual RedMonk content
-  const fallbackPosts: RSSItem[] = [
-    {
-      title: "Optimizing JavaScript Delivery: Signals v React Compiler",
-      link: "https://redmonk.com/kholterhoff/2025/05/13/javascript-signals-react-compiler/",
-      description: "JavaScript in 2025 isn't exactly lightweight. Shipping JS code involves managing browser quirks, massive bundle sizes, hydration woes, and performance tuning that can sometimes feel like black magic to developers...",
-      pubDate: "Tue, 13 May 2025 15:36:41 +0000",
-      image: "https://redmonk.com/kholterhoff/files/2025/05/chefingredients-scaled.jpeg"
-    },
-    {
-      title: "The Problem of JavaScript Code Delivery",
-      link: "https://redmonk.com/kholterhoff/2024/06/25/the-problem-of-javascript-code-delivery/",
-      description: "An analysis of current challenges in JavaScript application delivery and modern solutions to improve performance and developer experience...",
-      pubDate: "Tue, 25 Jun 2024 10:00:00 +0000"
-    },
-    {
-      title: "React Just Changed Forever",
-      link: "https://redmonk.com/kholterhoff/",
-      description: "React has never really thought about build tools too much. Historically React has just been the runtime. With Server Components they moved to the server, but with React Compiler they're moving to build...",
-      pubDate: "Wed, 15 May 2024 10:00:00 +0000"
-    }
-  ]
 
   useEffect(() => {
     const fetchRSS = async () => {
