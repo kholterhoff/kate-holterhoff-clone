@@ -16,6 +16,7 @@ export default function RSSFeed() {
   const [posts, setPosts] = useState<RSSItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [updating, setUpdating] = useState(false)
 
   // Fallback posts based on actual RedMonk content
   const fallbackPosts: RSSItem[] = [
@@ -135,6 +136,27 @@ export default function RSSFeed() {
     fetchRSS()
   }, [])
 
+  const handleRefreshRSS = async () => {
+    setUpdating(true)
+    try {
+      console.log('Manual RSS refresh triggered')
+      const response = await fetch('/api/rss-update', { method: 'POST' })
+      const result = await response.json()
+
+      if (result.success && result.data.posts.length > 0) {
+        console.log('RSS refresh successful, updating posts')
+        setPosts(result.data.posts)
+        setError(null)
+      } else {
+        console.error('RSS refresh failed:', result)
+      }
+    } catch (err) {
+      console.error('Manual RSS refresh error:', err)
+    } finally {
+      setUpdating(false)
+    }
+  }
+
   const formatDate = (dateString: string) => {
     try {
       const date = new Date(dateString)
@@ -188,7 +210,35 @@ export default function RSSFeed() {
 
   return (
     <div className="w-full">
-      <h2 className="text-2xl font-bold mb-6">Latest from RedMonk</h2>
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-bold">Latest from RedMonk</h2>
+        <button
+          onClick={handleRefreshRSS}
+          disabled={updating}
+          className={`px-3 py-1 text-sm rounded-md border transition-colors ${
+            updating
+              ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
+              : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50 hover:text-coral'
+          }`}
+          title="Refresh RSS feed"
+        >
+          {updating ? (
+            <>
+              <svg className="w-4 h-4 animate-spin inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              Updating...
+            </>
+          ) : (
+            <>
+              <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              Refresh
+            </>
+          )}
+        </button>
+      </div>
       <div className="grid gap-6">
         {posts.map((post, index) => (
           <Link

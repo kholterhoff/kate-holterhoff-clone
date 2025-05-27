@@ -5,6 +5,15 @@
   command = "bun run build"
   publish = ".next"
 
+[[functions]]
+  name = "rss-update-weekly"
+  src = "netlify/functions/rss-update-weekly.js"
+  schedule = "0 0 * * 1"  # Run every Monday at midnight
+
+[functions]
+  # Enable serverless functions
+  included_files = ["data/**/*"]
+
 [build.environment]
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
