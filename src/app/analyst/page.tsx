@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Navigation from '@/components/Navigation'
 import SocialLinks from '@/components/SocialLinks'
+import RSSFeed from '@/components/RSSFeed'
 
 export default function Analyst() {
   return (
@@ -36,6 +37,11 @@ export default function Analyst() {
                   • Studies on programming language trends
                 </p>
               </div>
+            </div>
+
+            {/* RSS Feed Section */}
+            <div className="mt-12">
+              <RSSFeed />
             </div>
           </div>
         </div>
