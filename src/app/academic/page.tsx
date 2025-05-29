@@ -170,161 +170,163 @@ export default function Academic() {
       <p class="par-indent"><em><a href="http://sites.bu.edu/impact/previous-issues/impact-winter-2017/education-in-nineteenth-century-british-literature-exclusion-as-innovation/">Education in Nineteenth-Century British Literature: Exclusion as Innovation</em> by Sheila Cordner</a> (New York&#58; Routledge, 2016). Reviewed for <em>Impact</em>. 6.1 (Winter 2017).</p>    
       </div>
 
-      <div id="dh project">
-      <h3>Digital Humanities Project</h3>
-      <h3>
-        <table> 
-          <tbody> 
-            <tr style={{ backgroundColor: '#fff' }}> 
-              <td><a href="https://web.archive.org/web/20220815220555/http://www.visualhaggard.org/">Visual Haggard&#58; The Illustration Archive</a></td>           
-              <td>Director &#38; Editor</td>
-            </tr>
-          </tbody>
-        </table>
-      </h3>
-      <p>I direct and edit <em>Visual Haggard</em>, a digital archive intended to preserve, centralize, and improve access to the illustrations from the novels published by H. Rider Haggard. Although the archive is <a href="https://redmonk.com/kholterhoff/2022/12/01/the-end-of-herokus-free-tier/">currently offline</a> (it is accessible using the <a href="https://web.archive.org/web/20220815220555/http://www.visualhaggard.org/">Wayback Machine</a>), this a literary and art historical resource aspires to make all Haggard illustrations readily available in a high-resolution and mobile device appropriate format. Currently, the site contains 1,900 images and receives approximately 1,500 page views every month. Visual Haggard is a federated archive with <a href="http://www.nines.org/">NINES, the Networked Infrastructure for Nineteenth-Century Electronic Scholarship</a>.
-    </div> 
+      <><div id="dh project">
+          <h3>Digital Humanities Project</h3>
+          <table>
+            <tbody>
+              <tr style={{ backgroundColor: '#fff' }}>
+                <td>
+                  <a href="https://web.archive.org/web/20220815220555/http://www.visualhaggard.org/">
+                    Visual Haggard&#58; The Illustration Archive
+                  </a>
+                </td>
+                <td>Director &#38; Editor</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            I direct and edit <em>Visual Haggard</em>, a digital archive intended to preserve, centralize, and improve access to the illustrations from the novels published by H. Rider Haggard. Although the archive is <a href="https://redmonk.com/kholterhoff/2022/12/01/the-end-of-herokus-free-tier/">currently offline</a> (it is accessible using the <a href="https://web.archive.org/web/20220815220555/http://www.visualhaggard.org/">Wayback Machine</a>), this a literary and art historical resource aspires to make all Haggard illustrations readily available in a high-resolution and mobile device appropriate format. Currently, the site contains 1,900 images and receives approximately 1,500 page views every month. Visual Haggard is a federated archive with <a href="http://www.nines.org/">NINES, the Networked Infrastructure for Nineteenth-Century Electronic Scholarship</a>.
+          </p>
+        </div><div id="teaching">
+            <h3>Courses Taught</h3>
+            <div>
+              <table>
+                <tbody>
+                  <h3>Georgia Institute of Technology</h3>
+                  <tr>
+                    <td>CS 3311/ LMC 3432</td>
+                    <td><a href="https://docs.google.com/document/d/1Y8hcGB7fK9Kq7NcljnrApaXI1SAhwvvNm78yIy06D3I/edit?usp=sharing">Junior Design: Project Design and Technical Communication Strategies</a></td>
+                    <td>2018</td>
+                  </tr>
+                  <tr>
+                    <td>ENGL 1102</td>
+                    <td>
+                      Victorian Digital Humanities
+                    </td>
+                    <td>2018</td>
+                  </tr>
+                  <tr>
+                    <td>ENGL 1102</td>
+                    <td>
+                      {/* <a href="courses/F17_ENG_1102/Victorians_In_Cyberspace.md"> */}
+                      <td>
+                        Victorians in Cyberspace
+                      </td>
+                      <tr>
+                        <td>ENGL 1102</td>
+                        <td><a href="http://1102vcdahrh.wordpress.com/">Visual Culture, Digital Archives and H. Rider Haggard</a></td>
+                        <td>2017</td>
+                      </tr>
+                      <tr>
+                        <td>ENGL 1102</td>
+                        <td><a href="http://1102theliteratureofnewmedia.weebly.com/">The Literature of New Media</a></td>
+                        <td>2016</td>
+                      </tr>
+                    </tbody>
+                  </table>
 
-    <div id="teaching">
-      <h3>Courses Taught</h3>
-      <div>
-        <table> 
-          <tbody> 
-            <h3>Georgia Institute of Technology</h3>
-            <tr>
-              <td>CS 3311/ LMC 3432</td>
-              <td><a href="https://docs.google.com/document/d/1Y8hcGB7fK9Kq7NcljnrApaXI1SAhwvvNm78yIy06D3I/edit?usp=sharing">Junior Design: Project Design and Technical Communication Strategies</a></td>
-              <td>2018</td>
-            </tr>
-            <tr>
-              <td>ENGL 1102</td>
-            <td>
-              Victorian Digital Humanities
-            </td>
-              <td>2018</td>
-            </tr>
-            <tr> 
-              <td>ENGL 1102</td>
-              <td>
-                {/* <a href="courses/F17_ENG_1102/Victorians_In_Cyberspace.md"> */}
-              <td>
-                  Victorians in Cyberspace
-              </td>       
-            <tr>
-              <td>ENGL 1102</td> 
-              <td><a href="http://1102vcdahrh.wordpress.com/">Visual Culture, Digital Archives and H. Rider Haggard</a></td>           
-              <td>2017</td>
-            </tr>
-            <tr>
-              <td>ENGL 1102</td> 
-              <td><a href="http://1102theliteratureofnewmedia.weebly.com/">The Literature of New Media</a></td>           
-              <td>2016</td>
-            </tr>
-          </tbody>
-        </table>
-        
-        <table>
-          <tbody>
-            <h3>University of Massachusetts at Dartmouth</h3>
-            <tr>
-              <td>ENL 684</td>
-              <td><a href="https://literarystudiesandtheoryspring2016.wordpress.com/">Literary Studies and Theory<a></td>
-              <td>2016</td>
-            </tr>
-            <tr>
-              <td><a href="https://literarystudiesandtheoryspring2016.wordpress.com/">Literary Studies and Theory</a></td>
-              <td>Studies in Literature: Victorian Romance and Realism</td>
-              <td>2016</td>
-            </tr>
-            <tr> 
-              <td>ENL 200</td>
-              <td>Studies in Literature: <span style={{ fontStyle: 'italic' }}>Fin de Si&#232;cle</span> Adventure Fiction</td>       
-              <td>2016</td>
-            </tr>
-          </tbody>
-        </table>
-        
-        <table> 
-          <tbody>
-            <h3>Saint Anselm College</h3>
-            <tr>
-              <td>EN 105</td>
-              <td>Freshman English</td>
-              <td>2014-15</td>
-            </tr>
-            <tr>
-              <td>HU 101, 102, 201, 202</td>
-              <td>Portraits of Human Greatness</td>
-              <td>2012-14</td>
-            </tr>
-          </tbody>
-        </table>
-        
-        <table> 
-          <tbody>
-            <h3>New Hampshire Institute of Art</h3>
-            <tr>
-              <td>AHT 399</td>
-              <td>Art and Identity</td>
-              <td>2015</td>
-            </tr>
-            <tr>
-              <td>AHT 201</td>
-              <td>Survey of Art History</td>
-              <td>2015</td>
-            </tr>
-          </tbody>
-        </table>
-        
-        <table> 
-          <tbody>
-            <h3>Carnegie Mellon University</h3>
-            <tr>
-              <td>ENG 213</td>
-              <td>Victorian Women Writers</td>
-              <td>2012</td>
-            </tr>
-            <tr>
-              <td>ENG 213</td>
-              <td>Victorian Detectives</td>
-              <td>2011</td>
-            </tr>
-            <tr> 
-              <td>ENG 101</td>
-              <td>Interpretation and Argument: Achieving a Public Art</td>       
-              <td>2010-11</td>
-            </tr>
-          </tbody>
-        </table>
-        
-        <table> 
-          <tbody>
-            <h3>University of Cincinnati</h3>
-            <tr>
-              <td>15 ENGL 102H</td>
-              <td>Honors English Composition</td>
-              <td>2009</td>
-            </tr>
-            <tr>
-              <td>15 ENGL 101,102</td>
-              <td>English Composition</td>
-              <td>2007-08</td>
-            </tr>
-          </tbody>
-        </table>
-        <br />  
-      </div>
-    </div>
-    <br />  
-  </div>
-  {/* Footer */}
-        <footer className="mt-auto py-8 text-center">
-          <div className="flex flex-col items-center space-y-4">
-            <SocialLinks />
-            <p className="text-sm text-gray-600">© 2025 Kate Holterhoff</p>
-  
-          </div>
-        </footer>
-      </div>
-    )
-  }
+                  <table>
+                    <tbody>
+                      <h3>University of Massachusetts at Dartmouth</h3>
+                      <tr>
+                        <td>ENL 684</td>
+                        <td><a href="https://literarystudiesandtheoryspring2016.wordpress.com/">Literary Studies and Theory<a></td>
+                          <td>2016</td>
+                        </tr>
+                          <tr>
+                            <td><a href="https://literarystudiesandtheoryspring2016.wordpress.com/">Literary Studies and Theory</a></td>
+                            <td>Studies in Literature: Victorian Romance and Realism</td>
+                            <td>2016</td>
+                          </tr>
+                          <tr>
+                            <td>ENL 200</td>
+                            <td>Studies in Literature: <span style={{ fontStyle: 'italic' }}>Fin de Si&#232;cle</span> Adventure Fiction</td>
+                            <td>2016</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <table>
+                        <tbody>
+                          <h3>Saint Anselm College</h3>
+                          <tr>
+                            <td>EN 105</td>
+                            <td>Freshman English</td>
+                            <td>2014-15</td>
+                          </tr>
+                          <tr>
+                            <td>HU 101, 102, 201, 202</td>
+                            <td>Portraits of Human Greatness</td>
+                            <td>2012-14</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <table>
+                        <tbody>
+                          <h3>New Hampshire Institute of Art</h3>
+                          <tr>
+                            <td>AHT 399</td>
+                            <td>Art and Identity</td>
+                            <td>2015</td>
+                          </tr>
+                          <tr>
+                            <td>AHT 201</td>
+                            <td>Survey of Art History</td>
+                            <td>2015</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <table>
+                        <tbody>
+                          <h3>Carnegie Mellon University</h3>
+                          <tr>
+                            <td>ENG 213</td>
+                            <td>Victorian Women Writers</td>
+                            <td>2012</td>
+                          </tr>
+                          <tr>
+                            <td>ENG 213</td>
+                            <td>Victorian Detectives</td>
+                            <td>2011</td>
+                          </tr>
+                          <tr>
+                            <td>ENG 101</td>
+                            <td>Interpretation and Argument: Achieving a Public Art</td>
+                            <td>2010-11</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <table>
+                        <tbody>
+                          <h3>University of Cincinnati</h3>
+                          <tr>
+                            <td>15 ENGL 102H</td>
+                            <td>Honors English Composition</td>
+                            <td>2009</td>
+                          </tr>
+                          <tr>
+                            <td>15 ENGL 101,102</td>
+                            <td>English Composition</td>
+                            <td>2007-08</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <br />
+                    </div>
+                  </div>
+                  <br />
+                </div>
+                {/* Footer */}
+                <footer className="mt-auto py-8 text-center">
+                  <div className="flex flex-col items-center space-y-4">
+                    <SocialLinks />
+                    <p className="text-sm text-gray-600">© 2025 Kate Holterhoff</p>
+
+                  </div>
+                </footer>
+                          </></div>
+                        )
+            }
