@@ -29,6 +29,7 @@ export default function Analyst() {
               </ul>  
             </div>
 
+              <h2>RedMonk Blog</h2>
             {/* RSS Feed Section */}
             <div className="mt-12">
               <RSSFeed />

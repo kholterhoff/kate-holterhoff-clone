@@ -170,7 +170,7 @@ export default function RSSFeed() {
   if (loading) {
     return (
       <div className="w-full">
-        <h2 className="text-2xl font-bold mb-6">Latest from RedMonk</h2>
+        <h2 className="text-2xl font-bold mb-6">console.log() – Debugging the tech industry</h2>
         <div className="grid gap-6">
           {[...Array(3)].map((_, i) => (
             <div key={i} className="animate-pulse">
@@ -194,7 +194,7 @@ export default function RSSFeed() {
   if (error) {
     return (
       <div className="w-full">
-        <h2 className="text-2xl font-bold mb-6">Latest from RedMonk</h2>
+        <h2 className="text-2xl font-bold mb-6"></h2>
         <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
           <p className="text-red-600">{error}</p>
           <p className="text-sm text-gray-600 mt-2">
@@ -208,7 +208,7 @@ export default function RSSFeed() {
   return (
     <div className="w-full">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold">Latest from RedMonk</h2>
+        <h2 className="text-2xl font-bold">console.log() – Debugging the tech industry</h2>
         <button
           onClick={handleRefreshRSS}
           disabled={updating}

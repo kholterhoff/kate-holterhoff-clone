@@ -18,6 +18,9 @@ const lato = Lato({
 export const metadata: Metadata = {
   title: "Kate Holterhoff",
   description: "Kate Holterhoff - Analyst at RedMonk and Affiliated Researcher at Georgia Tech",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
