@@ -13,8 +13,9 @@ export default function Academic() {
         <div className="max-w-4xl mx-auto">
           <div className="space-y-8">
            <>
+           <h1>Kate Holterhoff's Curriculumn Vitae</h1>
             <div id="research">
-              <h3>Research &amp; Teaching Areas</h3>
+              <h2>Research &amp; Teaching Areas</h2>
               <ul>
                 <li>19C Literature</li>
                 <li>Periodical Studies</li>
@@ -27,7 +28,7 @@ export default function Academic() {
               </ul>
             </div>
             <div id="professional appointments">
-              <h3>Professional Appointments</h3>
+              <h2>Professional Appointments</h2>
               <table>
                 <tbody>
                   <tr>
@@ -52,13 +53,13 @@ export default function Academic() {
                     <td>2016</td>
                   </tr>
                   <tr>
-                    <td>Instructor, Saint Anselm College</td> <td>2012-15</td>
+                    <td>Instructor, Saint Anselm College</td><td>2012-15</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div id="education">
-              <h3>Education</h3>
+              <h2>Education</h2>
               <table>
                 <tbody>
                   <tr>
@@ -93,8 +94,8 @@ export default function Academic() {
               </table>
             </div>
             <div id="publications">
-              <h3>Books</h3>
-              <p className="par-indent">
+              <h2>Books</h2>
+              <p>
                 <em>
                   <a href="https://www.ohioswallow.com/9780821425961/speculation-and-the-darwinian-method-in-british-romance-fiction-1859-1914/">
                     Speculation and the Darwinian Method in British Romance Fiction,
@@ -103,7 +104,7 @@ export default function Academic() {
                 </em>
                 . Series in Victorian Studies. Athens: Ohio University Press, 2025.
               </p>
-              <p className="par-indent">
+              <p>
                 <em>
                   <a href="https://www.routledge.com/Illustration-in-Fin-de-Siecle-Transatlantic-Romance-Fiction/Holterhoff/p/book/9780367862091">
                     Illustration in Fin-de-Siècle Transatlantic Romance Fiction
@@ -113,7 +114,7 @@ export default function Academic() {
                 York: Routledge, 2022.
               </p>
               <h3>Journal Articles</h3>
-              <p className="par-indent">
+              <p>
                 "
                 <a href="https://www.oxfordbibliographies.com/display/document/obo-9780199799558/obo-9780199799558-0194.xml">
                   Adventure Literature
@@ -126,7 +127,7 @@ export default function Academic() {
                 </em>
                 . Ed. Lisa Rodensky. New York: Oxford University Press, 2023.
               </p>
-              <p className="par-indent">
+              <p>
                 "
                 <a href="https://muse.jhu.edu/article/819751/summary">
                   Illustrating White Cannibals in <em>Harper's Weekly</em>: Adventure
@@ -135,7 +136,7 @@ export default function Academic() {
                 ." <em>American Periodicals: A Journal of History &amp; Criticism</em>
                 . 31.2 (2021): 134-154.
               </p>
-              <p className="par-indent">
+              <p>
                 "
                 <a href="https://scholarworks.iu.edu/journals/index.php/josotl/article/view/32982">
                   Audio Guides for Digital Archives
@@ -143,14 +144,14 @@ export default function Academic() {
                 ." <em>Journal of the Scholarship of Teaching and Learning</em>. 21.2
                 (2021): 144-146.
               </p>
-              <p className="par-indent">
+              <p>
                 "
                 <a href="https://muse.jhu.edu/article/731585/summary">
                   Late-Nineteenth-Century Adventure Fiction and the Anthropocene
                 </a>
                 ." <em>Configurations</em>. 27.3 (2019): 271-300.
               </p>
-              <p className="par-indent">
+              <p>
                 "
                 <a href="https://academic.oup.com/jvc/article/24/3/354/5557724">
                   Social Justice and Victorian Digital Humanities
@@ -158,14 +159,14 @@ export default function Academic() {
                 ." <em>Journal of Victorian Culture</em>'s Digital Forum. 24.3 (July
                 2019): 354-360.
               </p>
-              <p className="par-indent">
+              <p>
                 "
                 <a href="http://www.digitalhumanities.org/dhq/vol/11/3/000324/000324.html">
                   From Disclaimer to Critique: Race and the Digital Image Archivist
                 </a>
                 ." <em>Digital Humanities Quarterly</em>. 11.3 (2017).
               </p>
-              <p className="par-indent">
+              <p>
                 "
                 <a href="https://muse.jhu.edu/article/657904">
                   Egyptology and Darwinian Evolution in Conan Doyle and H. Rider
@@ -174,14 +175,14 @@ export default function Academic() {
                 " <em>English Literature in Transition, 1880-1920</em>. 60.3 (June
                 2017): 314-340.
               </p>
-              <p className="par-indent">
+              <p>
                 "
                 <a href="http://dx.doi.org/10.1080/13555502.2016.1152877">
                   Liberal Evolutionism and the Satirical Ape
                 </a>
                 ." <em>Journal of Victorian Culture</em>. 21.2 (2016): 1-21.
               </p>
-              <p className="par-indent">
+              <p>
                 "
                 <a href="http://link.springer.com/article/10.1007%2Fs10739-014-9377-0">
                   The History and Reception of Charles Darwin's Hypothesis of
@@ -190,7 +191,7 @@ export default function Academic() {
                 ." <em>The Journal of the History of Biology.</em> 47.4 (2014):
                 661-95.
               </p>
-              <p className="par-indent">
+              <p>
                 "
                 <a href="http://www.victoriannetwork.org/index.php/vn/article/view/13">
                   Beauty as a Terministic Screen in Charles Darwin's{" "}
@@ -198,7 +199,7 @@ export default function Academic() {
                 </a>
                 ." <em>Victorian Network</em>. 2.1 (Summer 2010): 49-69.{" "}
               </p>
-              <p className="par-indent">
+              <p>
                 "
                 <a href="http://jvc.oup.com/2013/10/21/ethics-and-the-digital-archive-the-case-for-visualizing-h-rider-haggard/">
                   Ethics and the Digital Archive: The Case for Visualizing H. Rider
@@ -208,8 +209,8 @@ export default function Academic() {
                 Neo-Victorian Studies &amp; Digital Humanities Week 2013. 21 October
                 2013.{" "}
               </p>
-              <h3>Book Chapters</h3>
-              <p className="par-indent">
+              <h2>Book Chapters</h2>
+              <p>
                 "
                 <a href="https://www.degruyter.com/document/doi/10.7765/9781526161703.00020/pdf?licenseType=restricted">
                   Romance Fiction, Folk Tales, and Poetry: Amy Sawyer and the Arts and
@@ -224,7 +225,7 @@ export default function Academic() {
                 . Ed. Joanna Devereux (Manchester: Manchester University Press, 2023):
                 195-208.
               </p>
-              <p className="par-indent">
+              <p>
                 "
                 <a href="https://books.google.com/books/about/Re_examining_Arthur_Conan_Doyle.html?id=5StCEAAAQBAJ&printsec=frontcover&source=kp_read_button&hl=en&newbks=1&newbks_redir=0#v=onepage&q&f=false">
                   'An absurd parody of the Professor': Illustrating Professor
@@ -239,7 +240,7 @@ export default function Academic() {
                 . Ed. Nils Clausson (Newcastle upon Tyne: Cambridge Scholars, 2021):
                 116-140.
               </p>
-              <p className="par-indent">
+              <p>
                 "
                 <a href="https://brill.com/view/book/edcoll/9789004426566/BP000003.xml">
                   Picturing Africa: Illustration in the Allan Quatermain Adventure
@@ -253,14 +254,14 @@ export default function Academic() {
                 . Eds. Christoph Ehland and Jana Gohrisch (Leiden: Brill, 2020):
                 44-71.
               </p>
-              <p className="par-indent">
+              <p>
                 "Science."{" "}
                 <a href="https://mcfarlandbooks.com/product/companion-to-victorian-popular-fiction/">
                   <em>Companion to Victorian Popular Fiction</em>
                 </a>
                 . Ed. Kevin A. Morrison (Jefferson: McFarland, 2018): 207-209.
               </p>
-              <p className="par-indent">
+              <p>
                 "Liminality and Power in Bram Stoker's <em>Jewel of Seven Stars</em>."{" "}
                 <a href="https://books.google.com/books/about/From_Wollstonecraft_to_Stoker.html?id=FLvJsajyk_8C&printsec=frontcover&source=kp_read_button#v=onepage&q&f=false">
                   <em>
@@ -270,70 +271,70 @@ export default function Academic() {
                 </a>
                 . Ed Dr. Marilyn Brock (Jefferson: McFarland, 2009): 132-43.
               </p>
-              <h3>Special Issues Edited for Journal</h3>
-              <p className="par-indent">
+              <h2>Special Issues Edited for Journal</h2>
+              <p>
                 <a href="http://www.ncgsjournal.com/issue112/issue112.htm">
                   "Illustration and Gender." Special Edition of{" "}
                   <em>Nineteenth‑Century Gender Studies</em>
                 </a>
                 . Eds. Kate Holterhoff and Nicole Lobdell. 11.2 (Summer 2015).
               </p>
-              <h3>Public Writing</h3>
-              <p className="par-indent">
+              <h2>Public Writing</h2>
+              <p>
                 <a href="https://css-tricks.com/add-background-colors-to-svgs-using-the-rect-element/">
                   "Add Background Colors to SVGs Using the "rect" Element."{" "}
                 </a>
                 <em>CSS Tricks</em>. 20 February 2020.
               </p>
-              <p className="par-indent">
+              <p>
                 <a href="https://www.neboagency.com/blog/how-i-learned-to-stop-worrying-and-love-engineering-documentation/">
                   "How I Learned to Stop Worrying and Love Engineering Documentation."{" "}
                 </a>
                 <em>Nebo Blog</em>. 21 June 2019.
               </p>
-              <p className="par-indent">
+              <p>
                 <a href="https://www.neboagency.com/blog/from-academic-to-developer-why-career-changes-are-no-longer-off-limits/">
                   "From Academic to Developer: Why Career Changes are No Longer Off
                   Limits."{" "}
                 </a>
                 <em>Nebo Blog</em>. 25 January 2019.
               </p>
-              <p className="par-indent">
+              <p>
                 <a href="https://www.chronicle.com/blogs/profhacker/genius-alternative-social-media/65695">
                   "Genius.com as an Alternative Social Media."{" "}
                 </a>
                 <em>ProfHacker: The Chronicle of Higher Education</em>. 30 August
                 2018.
               </p>
-              <p className="par-indent">
+              <p>
                 <a href="https://medium.com/@kateholterhoff/visualizing-the-bicycle-and-the-new-woman-in-the-ladys-realm-b1c7cf91048">
                   "Visualizing the Bicycle and the New Woman in 'The Lady's Realm.'"
                 </a>{" "}
                 <em>Medium</em>. 31 May 2018.
               </p>
-              <p className="par-indent">
+              <p>
                 "Visual Haggard: The Illustration Archive."{" "}
                 <em>Rider Haggard Society Journal</em>. 126 (July 2018): 4-6.
               </p>
-              <p className="par-indent">
+              <p>
                 <a href="https://www.chronicle.com/blogs/profhacker/digital-archives-data-set-creation/64390">
                   "Using Digital Archives to Teach Data Set Creation and Visualization
                   Design."
                 </a>{" "}
                 <em>ProfHacker: The Chronicle of Higher Education</em>. 29 Sep. 2017.
               </p>
-              <p className="par-indent">
+              <p>
                 "Report II: Poetry and Melancholia Conference."{" "}
                 <em>Society for the Social History of Medicine Gazette</em>. 55
                 (December 2014): 6.
               </p>
-              <p className="par-indent">
+              <p>
                 "Ethics and the Digital Archive: The Case for Visualizing H. Rider
                 Haggard." <em>Journal of Victorian Culture Online</em>. Neo-Victorian
                 Studies &amp; Digital Humanities Week 2013. 21 Oct. 2013.
               </p>
-              <h3>Books Edited</h3>
-              <p className="par-indent">
+              <h2>Books Edited</h2>
+              <p>
                 <a href="https://www.victoriansecrets.co.uk/book/the-autobiography-of-christopher-kirkland/">
                   <em>The Autobiography of Christopher Kirkland </em>by Eliza Lynn
                   Linton{" "}
@@ -341,15 +342,15 @@ export default function Academic() {
                 [1885]. Eds. Deborah Meem and Kate Holterhoff. Brighton, UK:{" "}
                 <em>Victorian Secrets</em>, 2011.
               </p>
-              <p className="par-indent">
+              <p>
                 <a href="https://www.victoriansecrets.co.uk/book/sowing-the-wind/">
                   <em>Sowing the Wind</em> by Eliza Lynn Linton
                 </a>{" "}
                 [1867]. Eds. Deborah Meem and Kate Holterhoff. Brighton, UK:{" "}
                 <em>Victorian Secrets</em>, 2014.
               </p>
-              <h3>Books Reviewed</h3>
-              <p className="par-indent">
+              <h2>Books Reviewed</h2>
+              <p>
                 <a href="https://www.journals.uchicago.edu/doi/10.1086/717027">
                   <em>
                     Catastrophic Thinking: Extinction and the Value of Diversity from
@@ -359,7 +360,7 @@ export default function Academic() {
                 (Chicago: University of Chicago Press, 2020). Reviewed for{" "}
                 <em>Isis</em>. 112.4 (December 2021): 848-849.
               </p>
-              <p className="par-indent">
+              <p>
                 <a href="http://v21collective.org/collations-book-forum-on-sarah-allisons-reductive-reading-a-syntax-of-victorian-moralizing/">
                   <em>
                     Reductive Reading: A Syntax of Victorian Moralizing by Sarah
@@ -369,7 +370,7 @@ export default function Academic() {
                 (Baltimore: Johns Hopkins UP, 2018). Reviewed for <em>V21</em>'s
                 Collations: Book Forum. 17 June 2019.
               </p>
-              <p className="par-indent">
+              <p>
                 <a href="http://muse.jhu.edu/article/710491/pdf">
                   <em>
                     Haunting Modernity and the Gothic Presence in British Modernist
@@ -381,7 +382,7 @@ export default function Academic() {
                 <em>English Literature in Transition, 1880-1920</em>. 62.1 (2019):
                 118-122.
               </p>
-              <p className="par-indent">
+              <p>
                 <a href="https://muse.jhu.edu/article/711537/pdf">
                   <em>
                     Evolution and Imagination in Victorian Children's Literature
@@ -391,7 +392,7 @@ export default function Academic() {
                 (Cambridge: Cambridge UP, 2016). Reviewed for{" "}
                 <em>Victorian Review</em>. 43.2 (2018): 311-314.
               </p>
-              <p className="par-indent">
+              <p>
                 <a href="https://www.jstor.org/stable/10.5621/sciefictstud.45.2.0341?seq=1#page_scan_tab_contents">
                   "What Mary Shelley Can Teach STEM Readers."
                 </a>{" "}
@@ -403,7 +404,7 @@ export default function Academic() {
                 by Mary Shelley (Cambridge: MIT, 2017). Reviewed for{" "}
                 <em>Science Fiction Studies</em>. 45.2 (2018): 341-344.
               </p>
-              <p className="par-indent">
+              <p>
                 <em>
                   <a href="https://muse.jhu.edu/article/690561">
                     Before Einstein: The Fourth Dimension in Fin de Siècle Literature
@@ -418,7 +419,7 @@ export default function Academic() {
                 <em>English Literature in Transition, 1880-1920</em>. 61.3 (2018):
                 396-399.
               </p>
-              <p className="par-indent">
+              <p>
                 <em>
                   <a href="https://www.cambridge.org/core/journals/journal-of-british-studies/article/kathleen-frederickson-the-ploy-of-instinct-victorian-sciences-of-nature-and-sexuality-in-liberal-governance-forms-of-living-new-york-fordham-university-press-2014-pp-236-10500-cloth/14C2ABB3EE4D5B5EE3C45AD76E9981C4#fndtn-information">
                     The Ploy of Instinct: Victorian Sciences of Nature and Sexuality
@@ -432,7 +433,7 @@ export default function Academic() {
                 (New York: Fordham University Press, 2014). Reviewed for{" "}
                 <em>the Journal of British Studies</em>. 56.2 (2017): 424-25.
               </p>
-              <p className="par-indent">
+              <p>
                 <em>
                   <a href="http://sites.bu.edu/impact/previous-issues/impact-winter-2017/education-in-nineteenth-century-british-literature-exclusion-as-innovation/">
                     Education in Nineteenth-Century British Literature: Exclusion as
@@ -448,7 +449,7 @@ export default function Academic() {
               </p>
             </div>
             <div id="dh project">
-              <h3>Digital Humanities Project</h3>
+              <h2>Digital Humanities Project</h2>
               <h3>
                 <table>
                   <tbody>
@@ -487,7 +488,7 @@ export default function Academic() {
               </p>
             </div>
             <div id="teaching">
-              <h3>Courses Taught</h3>
+              <h2>Courses Taught</h2>
               <h3>Georgia Institute of Technology</h3>
               <table>
                 <tbody>

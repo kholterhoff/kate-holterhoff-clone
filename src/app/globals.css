@@ -33,7 +33,7 @@
     /* Added custom colors and gradients */
     --gradient-start: #e26e63;
     --gradient-end: #eaa64d;
-    --coral: #e26e63;
+    --coral: #e36e64;
     --orange: #eaa64d;
     --dark-gray: #5e5b51;
     --light-gray: #fbfbfb;
@@ -80,6 +80,24 @@
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-montserrat), sans-serif;
+    font-weight: 800;
+  }
+  h1 {
+    font-size: larger;
+  }
+  h2 {
+    font-size: large;
+    margin-top: 30px;
+  }
+  h3 {
+    margin-top: 15px;
+  }
+  a {
+    color: #e36e64;
+  }
+  a:hover,
+  a:focus {
+  color:  #b64f54;
   }
 }
 
@@ -212,6 +230,70 @@
     object-fit: cover;
     display: block;
   }
+
+/* Course */
+  .banner__teaching {
+    height: 200px;
+    background-position: center top;
+  }
+  .container__content {
+    margin: 0 auto;
+    line-height: 1.5;
+    margin-bottom: -50px;
+    max-width: 70%;
+  }
+  td {
+    padding: 3px 5px;
+    width: 75%;
+  }
+  td:last-child {
+    text-align: right;
+    padding: 0 5px;
+    width: 10%;
+  }
+  td:first-child {
+    padding: 0 5px;
+    width: 15%;
+  }
+
+#publications p {
+  margin-left: .5in;
+  text-indent: -.5in;
+}  
+  /* Course Table */
+table {
+	font-size: 16px;
+	width: 100%;
+}
+.content h2 {
+  font-size: 40px;
+  padding-top: 40px;
+  color: #212529;
+  text-align: left;
+}
+.content h3 {
+  font-size: 20px;
+  padding-top: 40px;
+}
+#research ul {
+  column-count: 2;
+}
+tr:nth-child(odd) {
+  background-color: #eee;
+}
+td {
+  padding: 3px 5px;
+  width: 50%;
+}
+td:last-child {
+  text-align: right;
+  padding: 0 5px;
+  width: 25%;
+}
+td:first-child {
+  padding: 0 5px;
+  width: 25%;
+}
 
   /* Navigation link animations */
   .nav-link {
@@ -390,6 +472,10 @@
 
     .typing-container {
       min-height: 1.1em;
+    }
+
+    #research ul {
+        column-count: 3;
     }
   }
 
