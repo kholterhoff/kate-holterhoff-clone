@@ -13,18 +13,16 @@ export default function Academic() {
         <div className="max-w-4xl mx-auto">
           <div className="space-y-8">
            <>
-           <h1>Kate Holterhoff's Curriculumn Vitae</h1>
+           {/* <h1>Curriculumn Vitae</h1> */}
             <div id="research">
-              <h2>Research &amp; Teaching Areas</h2>
+              <h2>Research</h2>
               <ul>
                 <li>19C Literature</li>
                 <li>Periodical Studies</li>
                 <li>History of Science: Evolution</li>
                 <li>Visual Culture</li>
                 <li>Digital Humanities</li>
-                <li>Gender, Race &amp; Class Identities</li>
                 <li>Adventure Fiction</li>
-                <li>TechComm</li>
               </ul>
             </div>
             <div id="professional appointments">

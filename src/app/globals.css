@@ -193,7 +193,17 @@
     transform: skew(-20deg) translateY(-2px) scale(1.02);
     transition: all 0.1s ease;
   }
-
+  .typing-container .font-bold, .typing-container .font-normal  {
+    color: white;
+  }
+  .font-normal {
+    color: darkgray;
+  }
+  .font-bold
+   {
+    color: gray;
+  }
+  
   .slanted {
     display: inline-block;
     transform: skew(20deg);

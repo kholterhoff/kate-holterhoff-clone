@@ -16,7 +16,7 @@ export default function Analyst() {
           <div className="space-y-8">
 
             <div id="research">
-              <h2>Research &#38; Trends</h2>
+              <h2>Research</h2>
               <ul> 
                 <li><a href="https://redmonk.com/kholterhoff/category/frontend/">Frontend Engineering</a></li>
                 <li><a href="https://redmonk.com/kholterhoff/category/ai/">AI/ML</a></li>
