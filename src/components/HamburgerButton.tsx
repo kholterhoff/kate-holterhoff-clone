@@ -23,21 +23,21 @@ export default function HamburgerButton({ isOpen, onClick }: HamburgerButtonProp
       <div className="w-6 h-6 relative">
         {/* Top line */}
         <span
-          className={`hamburger-line top-1 ${
+          className={`hamburger-line absolute top-1 ${
             isOpen ? 'top-3 rotate-45' : ''
           }`}
         />
 
         {/* Middle line */}
         <span
-          className={`hamburger-line top-3 ${
+          className={`hamburger-line absolute top-3 ${
             isOpen ? 'opacity-0' : ''
           }`}
         />
 
         {/* Bottom line */}
         <span
-          className={`hamburger-line top-5 ${
+          className={`hamburger-line absolute top-5 ${
             isOpen ? 'top-3 -rotate-45' : ''
           }`}
         />

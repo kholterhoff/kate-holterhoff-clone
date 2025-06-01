@@ -19,11 +19,22 @@ export default function MobileMenu({ isOpen, onToggle }: MobileMenuProps) {
   ]
 
   // Close menu when route changes
+  // Close menu when route changes
   useEffect(() => {
-    if (isOpen) {
-      onToggle()
+    // Only close the menu when the route changes, not on initial render
+    const handleRouteChange = () => {
+      if (isOpen) {
+        onToggle()
+      }
     }
-  }, [pathname, isOpen, onToggle])
+    
+    // Listen for route changes
+    window.addEventListener('popstate', handleRouteChange)
+    
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange)
+    }
+  }, [isOpen, onToggle])
 
   // Prevent body scroll when menu is open
   useEffect(() => {
