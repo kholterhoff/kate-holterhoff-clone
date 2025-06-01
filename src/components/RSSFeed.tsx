@@ -247,9 +247,9 @@ export default function RSSFeed() {
           >
             <article className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group-hover:border-coral/30">
               <div className="p-6">
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-4">
                   {/* Post featured image */}
-                  <div className="flex-shrink-0">
+                  <div className="flex-shrink-0 mx-auto sm:mx-0 mb-4 sm:mb-0">
                     {post.image ? (
                       <div className="w-24 h-24 rounded-lg overflow-hidden bg-gray-100">
                         <img
@@ -275,7 +275,7 @@ export default function RSSFeed() {
                     )}
                   </div>
 
-                  <div className="flex-1 min-w-0">
+                  <div className="flex-1 min-w-0 text-center sm:text-left">
                     <h3 className="text-lg font-semibold text-gray-900 group-hover:text-coral transition-colors duration-200 line-clamp-2 mb-2">
                       {post.title}
                     </h3>

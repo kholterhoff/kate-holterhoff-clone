@@ -23,9 +23,9 @@ export default function Home() {
       {/* Main Content */}
       <main className="flex-1 container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8 items-center mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
             {/* Profile Image */}
-            <div className="flex justify-center md:justify-end fade-in-up delay-1">
+            <div className="flex justify-center fade-in-up delay-1">
               <div className="relative floating-content">
                 <div className="profile-image-container">
                   <Image
@@ -41,7 +41,7 @@ export default function Home() {
 
             {/* Bio Text */}
             <div className="space-y-4 fade-in-up delay-2">
-              <p className="text-lg leading-relaxed">
+              <p className="text-base md:text-lg leading-relaxed">
                 Kate completed her Ph.D. in literary and cultural studies at Carnegie Mellon in 2016;
                 she is currently an{' '}
                 <Link
@@ -67,7 +67,7 @@ export default function Home() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col md:flex-row gap-6 justify-center items-center fade-in-up delay-3">
+          <div className="flex flex-col md:flex-row gap-8 justify-center items-center fade-in-up delay-3">
             <Link href="/academic" className="button-academic rounded-sm">
               <span className="slanted text-lg font-light">academic</span>
             </Link>
