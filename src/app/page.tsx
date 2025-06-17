@@ -1,8 +1,9 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from "next/image";
 import Navigation from '@/components/Navigation'
 import TypingHeroTitle from '@/components/TypingHeroTitle'
 import SocialLinks from '@/components/SocialLinks'
+import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
@@ -82,7 +83,7 @@ export default function Home() {
       <footer className="mt-auto py-8 text-center">
         <div className="flex flex-col items-center space-y-4">
           <SocialLinks />
-          <p className="text-sm text-gray-600">© 2025 Kate Holterhoff</p>
+          <Footer />
         </div>
       </footer>
     </div>

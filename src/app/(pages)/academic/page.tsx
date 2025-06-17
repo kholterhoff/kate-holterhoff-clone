@@ -1,15 +1,5 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import Navigation from '@/components/Navigation'
-import SocialLinks from '@/components/SocialLinks'
-
 export default function Academic() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navigation />
-
-      {/* Main Content */}
-      <main className="flex-1 container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           <div className="space-y-8">
            <>
@@ -642,15 +632,6 @@ export default function Academic() {
             
           </div>
         </div>
-      </main>
 
-      {/* Footer */}
-      <footer className="mt-auto py-8 text-center">
-        <div className="flex flex-col items-center space-y-4">
-          <SocialLinks />
-          <p className="text-sm text-gray-600">© 2025 Kate Holterhoff</p>
-        </div>
-      </footer>
-    </div>
   )
 }
