@@ -197,12 +197,13 @@ export default function RSSFeed() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[...Array(RSS_POST_COUNT)].map((_, i) => (
             <div key={i} className="animate-pulse">
-              <div className="aspect-[3/4] rounded-2xl border border-gray-200 bg-gray-100 p-5 shadow-sm">
-                <div className="flex h-full flex-col justify-end">
-                  <div className="mb-3 h-3 w-24 rounded bg-gray-200" />
-                  <div className="mb-2 h-6 w-4/5 rounded bg-gray-300" />
-                  <div className="mb-2 h-6 w-3/5 rounded bg-gray-300" />
-                  <div className="h-4 w-28 rounded bg-gray-200" />
+              <div className="aspect-[3/4] overflow-hidden rounded-2xl border border-gray-200 bg-black shadow-sm">
+                <div className="h-1/2 bg-gray-100" />
+                <div className="flex h-1/2 flex-col justify-end p-5 sm:p-6">
+                  <div className="mb-3 h-3 w-24 rounded bg-gray-700" />
+                  <div className="mb-2 h-6 w-4/5 rounded bg-gray-600" />
+                  <div className="mb-2 h-6 w-3/5 rounded bg-gray-600" />
+                  <div className="h-4 w-28 rounded bg-gray-700" />
                 </div>
               </div>
             </div>
@@ -266,33 +267,34 @@ export default function RSSFeed() {
             rel="noopener noreferrer"
             className="group block"
           >
-            <article className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-coral/40 group-hover:shadow-xl">
-              <div
-                className={`absolute inset-0 items-center justify-center bg-gradient-to-br from-coral to-orange ${
-                  post.image ? "hidden" : "flex"
-                }`}
-                data-fallback="true"
-              >
-                <span className="text-sm font-semibold tracking-[0.3em] text-white">RM</span>
+            <article className="aspect-[3/4] overflow-hidden rounded-2xl border border-gray-200 bg-black shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-coral/40 group-hover:shadow-xl">
+              <div className="relative h-1/2 overflow-hidden bg-gradient-to-br from-coral to-orange">
+                <div
+                  className={`absolute inset-0 items-center justify-center bg-gradient-to-br from-coral to-orange ${
+                    post.image ? "hidden" : "flex"
+                  }`}
+                  data-fallback="true"
+                >
+                  <span className="text-sm font-semibold tracking-[0.3em] text-white">RM</span>
+                </div>
+                {post.image ? (
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement
+                      target.style.display = "none"
+                      const fallback = target.parentElement?.querySelector('[data-fallback="true"]') as HTMLElement | null
+                      if (fallback) {
+                        fallback.style.display = "flex"
+                      }
+                    }}
+                  />
+                ) : null}
+                <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-transparent to-black/20" />
               </div>
-              {post.image ? (
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement
-                    target.style.display = "none"
-                    const fallback = target.parentElement?.querySelector('[data-fallback="true"]') as HTMLElement | null
-                    if (fallback) {
-                      fallback.style.display = "flex"
-                    }
-                  }}
-                />
-              ) : null}
-              <div className="absolute inset-x-0 bottom-0 h-[72%] bg-gradient-to-t from-black via-black/85 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-orange/15" />
-              <div className="relative flex h-full flex-col justify-end p-5 sm:p-6">
+              <div className="flex h-1/2 flex-col justify-end bg-black p-5 sm:p-6">
                 <time className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-white/85">
                   {formatDate(post.pubDate)}
                 </time>

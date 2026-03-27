@@ -1,4 +1,5 @@
 import RSSFeed from '@/components/RSSFeed'
+import MonkCastFeed from '@/components/MonkCastFeed'
 
 export default function Analyst() {
   return (
@@ -23,6 +24,10 @@ export default function Analyst() {
         {/* RSS Feed Section */}
         <div className="mt-12">
           <RSSFeed />
+        </div>
+
+        <div className="mt-16">
+          <MonkCastFeed />
         </div>
       </div>
     </div>
