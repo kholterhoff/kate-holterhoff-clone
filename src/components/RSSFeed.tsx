@@ -197,7 +197,7 @@ export default function RSSFeed() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[...Array(RSS_POST_COUNT)].map((_, i) => (
             <div key={i} className="animate-pulse">
-              <div className="aspect-square rounded-2xl border border-gray-200 bg-gray-100 p-5 shadow-sm">
+              <div className="aspect-[3/4] rounded-2xl border border-gray-200 bg-gray-100 p-5 shadow-sm">
                 <div className="flex h-full flex-col justify-end">
                   <div className="mb-3 h-3 w-24 rounded bg-gray-200" />
                   <div className="mb-2 h-6 w-4/5 rounded bg-gray-300" />
@@ -266,7 +266,7 @@ export default function RSSFeed() {
             rel="noopener noreferrer"
             className="group block"
           >
-            <article className="relative aspect-square overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-coral/40 group-hover:shadow-xl">
+            <article className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-coral/40 group-hover:shadow-xl">
               <div
                 className={`absolute inset-0 items-center justify-center bg-gradient-to-br from-coral to-orange ${
                   post.image ? "hidden" : "flex"
@@ -290,10 +290,10 @@ export default function RSSFeed() {
                   }}
                 />
               ) : null}
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/45 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-950/10 via-transparent to-orange/25" />
+              <div className="absolute inset-x-0 bottom-0 h-[72%] bg-gradient-to-t from-black via-black/85 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-orange/15" />
               <div className="relative flex h-full flex-col justify-end p-5 sm:p-6">
-                <time className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-white/70">
+                <time className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-white/85">
                   {formatDate(post.pubDate)}
                 </time>
 
@@ -301,7 +301,7 @@ export default function RSSFeed() {
                   {post.title}
                 </h3>
 
-                <p className="mb-4 text-sm leading-6 text-white/80 line-clamp-3">
+                <p className="mb-4 text-sm leading-6 text-white/90 line-clamp-3">
                   {post.description}
                 </p>
 
