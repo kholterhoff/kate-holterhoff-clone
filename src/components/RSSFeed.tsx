@@ -1,8 +1,7 @@
-'use client'
+"use client"
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
+import { useEffect, useState } from "react"
+import Link from "next/link"
 
 interface RSSItem {
   title: string
@@ -12,6 +11,8 @@ interface RSSItem {
   image?: string
   content?: string
 }
+
+const RSS_POST_COUNT = 6
 
 // Fallback posts based on actual RedMonk content
 const fallbackPosts: RSSItem[] = [
@@ -23,16 +24,38 @@ const fallbackPosts: RSSItem[] = [
     image: "https://redmonk.com/kholterhoff/files/2025/05/chefingredients-scaled.jpeg"
   },
   {
+    title: "UI Component Libraries, shadcn/ui, and the Revenge of Copypasta",
+    link: "https://redmonk.com/kholterhoff/2025/04/22/ui-component-libraries-shadcn-ui-and-the-revenge-of-copypasta/",
+    description: "Shadcn/ui, a hugely popular open source React UI component library, has become critical frontend infrastructure for teams building modern app interfaces...",
+    pubDate: "Tue, 22 Apr 2025 13:19:09 +0000",
+    image: "https://redmonk.com/kholterhoff/files/2025/04/giphy.gif"
+  },
+  {
+    title: "Is Frontend Observability Hipster RUM?",
+    link: "https://redmonk.com/kholterhoff/2025/04/02/is-frontend-observability-hipster-rum/",
+    description: "Several observability vendors have launched frontend observability products recently, raising new questions about where browser telemetry fits in the stack...",
+    pubDate: "Wed, 2 Apr 2025 16:59:47 +0000",
+    image: "https://redmonk.com/kholterhoff/files/2025/04/Screenshot-2025-02-28-at-1.57.30%E2%80%AFPM.png"
+  },
+  {
+    title: "New TypeScript Compiler, Who Dis?",
+    link: "https://redmonk.com/kholterhoff/2025/03/13/new-typescript-compiler-who-dis/",
+    description: "TypeScript is moving fast again, and Microsoft’s compiler overhaul has major implications for build speed, tooling, and everyday developer workflows...",
+    pubDate: "Thu, 13 Mar 2025 15:27:48 +0000",
+    image: "https://redmonk.com/kholterhoff/files/2025/03/lance-moteur.gif"
+  },
+  {
+    title: "AI Agents and the CEOs",
+    link: "https://redmonk.com/kholterhoff/2025/02/18/ai-agents-and-the-ceos/",
+    description: "Corporate AI messaging has shifted hard toward agents, and that trend says as much about ROI expectations and labor narratives as it does about the tech itself...",
+    pubDate: "Tue, 18 Feb 2025 20:33:03 +0000",
+    image: "https://redmonk.com/kholterhoff/files/2025/02/ai-ceo.jpeg"
+  },
+  {
     title: "The Problem of JavaScript Code Delivery",
     link: "https://redmonk.com/kholterhoff/2024/06/25/the-problem-of-javascript-code-delivery/",
     description: "An analysis of current challenges in JavaScript application delivery and modern solutions to improve performance and developer experience...",
     pubDate: "Tue, 25 Jun 2024 10:00:00 +0000"
-  },
-  {
-    title: "React Just Changed Forever",
-    link: "https://redmonk.com/kholterhoff/",
-    description: "React has never really thought about build tools too much. Historically React has just been the runtime. With Server Components they moved to the server, but with React Compiler they're moving to build...",
-    pubDate: "Wed, 15 May 2024 10:00:00 +0000"
   }
 ]
 
@@ -56,9 +79,9 @@ export default function RSSFeed() {
         
         if (cachedResponse.ok) {
           const cachedData = await cachedResponse.json()
-          if (cachedData.success && cachedData.data.posts.length > 0) {
+          if (cachedData.success && cachedData.data.posts.length >= RSS_POST_COUNT) {
             console.log('Using cached RSS data from:', cachedData.data.lastUpdated)
-            setPosts(cachedData.data.posts)
+            setPosts(cachedData.data.posts.slice(0, RSS_POST_COUNT))
             setError(null)
             return
           }
@@ -79,7 +102,7 @@ export default function RSSFeed() {
             
             // Convert RSS2JSON format to our expected format
             const feedItems: RSSItem[] = []
-            for (let i = 0; i < Math.min(jsonData.items.length, 5); i++) {
+            for (let i = 0; i < Math.min(jsonData.items.length, RSS_POST_COUNT); i++) {
               const item = jsonData.items[i]
               
               // Extract image from content or use enclosure/thumbnail
@@ -142,7 +165,7 @@ export default function RSSFeed() {
       
       if (result.success && result.data.posts.length > 0) {
         console.log('RSS refresh successful, updating posts')
-        setPosts(result.data.posts)
+        setPosts(result.data.posts.slice(0, RSS_POST_COUNT))
         setError(null)
       } else {
         console.error('RSS refresh failed:', result)
@@ -171,17 +194,15 @@ export default function RSSFeed() {
     return (
       <div className="w-full">
         <h2 className="text-2xl font-bold mb-6">console.log() – Debugging the tech industry</h2>
-        <div className="grid gap-6">
-          {[...Array(3)].map((_, i) => (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {[...Array(RSS_POST_COUNT)].map((_, i) => (
             <div key={i} className="animate-pulse">
-              <div className="bg-gray-200 rounded-lg p-6">
-                <div className="flex gap-4">
-                  <div className="w-24 h-24 bg-gray-300 rounded-lg" />
-                  <div className="flex-1">
-                    <div className="h-4 bg-gray-300 rounded mb-2" />
-                    <div className="h-3 bg-gray-300 rounded mb-2 w-3/4" />
-                    <div className="h-3 bg-gray-300 rounded w-1/2" />
-                  </div>
+              <div className="aspect-square rounded-2xl border border-gray-200 bg-gray-100 p-5 shadow-sm">
+                <div className="flex h-full flex-col justify-end">
+                  <div className="mb-3 h-3 w-24 rounded bg-gray-200" />
+                  <div className="mb-2 h-6 w-4/5 rounded bg-gray-300" />
+                  <div className="mb-2 h-6 w-3/5 rounded bg-gray-300" />
+                  <div className="h-4 w-28 rounded bg-gray-200" />
                 </div>
               </div>
             </div>
@@ -207,7 +228,7 @@ export default function RSSFeed() {
 
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between mb-6">
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-2xl font-bold">console.log() – Debugging the tech industry</h2>
         <button
           onClick={handleRefreshRSS}
@@ -236,7 +257,7 @@ export default function RSSFeed() {
           )}
         </button>
       </div>
-      <div className="grid gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post, index) => (
           <Link
             key={index}
@@ -245,55 +266,49 @@ export default function RSSFeed() {
             rel="noopener noreferrer"
             className="group block"
           >
-            <article className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group-hover:border-coral/30">
-              <div className="p-6">
-                <div className="flex flex-col sm:flex-row gap-4">
-                  {/* Post featured image */}
-                  <div className="flex-shrink-0 mx-auto sm:mx-0 mb-4 sm:mb-0">
-                    {post.image ? (
-                      <div className="w-24 h-24 rounded-lg overflow-hidden bg-gray-100">
-                        <img
-                          src={post.image}
-                          alt={post.title}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                          onError={(e) => {
-                            // Fallback to RedMonk logo if image fails to load
-                            const target = e.target as HTMLImageElement
-                            target.style.display = 'none'
-                            const fallback = target.nextElementSibling as HTMLElement
-                            if (fallback) fallback.style.display = 'flex'
-                          }}
-                        />
-                        <div className="w-full h-full bg-gradient-to-br from-coral to-orange rounded-lg flex items-center justify-center" style={{ display: 'none' }}>
-                          <span className="text-white font-bold text-sm">RM</span>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="w-24 h-24 bg-gradient-to-br from-coral to-orange rounded-lg flex items-center justify-center">
-                        <span className="text-white font-bold text-sm">RM</span>
-                      </div>
-                    )}
-                  </div>
+            <article className="relative aspect-square overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-coral/40 group-hover:shadow-xl">
+              <div
+                className={`absolute inset-0 items-center justify-center bg-gradient-to-br from-coral to-orange ${
+                  post.image ? "hidden" : "flex"
+                }`}
+                data-fallback="true"
+              >
+                <span className="text-sm font-semibold tracking-[0.3em] text-white">RM</span>
+              </div>
+              {post.image ? (
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement
+                    target.style.display = "none"
+                    const fallback = target.parentElement?.querySelector('[data-fallback="true"]') as HTMLElement | null
+                    if (fallback) {
+                      fallback.style.display = "flex"
+                    }
+                  }}
+                />
+              ) : null}
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/45 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-950/10 via-transparent to-orange/25" />
+              <div className="relative flex h-full flex-col justify-end p-5 sm:p-6">
+                <time className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-white/70">
+                  {formatDate(post.pubDate)}
+                </time>
 
-                  <div className="flex-1 min-w-0 text-center sm:text-left">
-                    <h3 className="text-lg font-semibold text-gray-900 group-hover:text-coral transition-colors duration-200 line-clamp-2 mb-2">
-                      {post.title}
-                    </h3>
+                <h3 className="mb-3 text-xl font-semibold leading-tight text-white transition-colors duration-200 group-hover:text-orange line-clamp-3">
+                  {post.title}
+                </h3>
 
-                    <p className="text-gray-600 text-sm mb-3 line-clamp-3">
-                      {post.description}
-                    </p>
+                <p className="mb-4 text-sm leading-6 text-white/80 line-clamp-3">
+                  {post.description}
+                </p>
 
-                    <div className="flex items-center justify-between">
-                      <time className="text-xs text-gray-500">
-                        {formatDate(post.pubDate)}
-                      </time>
-                      <span className="text-coral text-sm font-medium group-hover:text-orange transition-colors">
-                        Read more →
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                <span className="inline-flex items-center text-sm font-medium text-white/90 transition-colors group-hover:text-white">
+                  Read more
+                  <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </span>
               </div>
             </article>
           </Link>

@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { saveRSSData, loadRSSData, isRSSDataExpired, type RSSItem } from '@/lib/rss-storage'
 
+const RSS_POST_COUNT = 6
+
 export async function POST(request: NextRequest) {
   try {
     console.log('RSS Update API: Starting RSS update process')
     
     // Check if we have recent cached data
     const existingData = await loadRSSData()
-    if (existingData && !isRSSDataExpired(existingData.lastUpdated, 1)) {
+    if (existingData && existingData.posts.length >= RSS_POST_COUNT && !isRSSDataExpired(existingData.lastUpdated, 1)) {
       console.log('RSS Update API: Using recent cached data (less than 1 hour old)')
       return NextResponse.json({
         success: true,
@@ -40,7 +42,7 @@ export async function POST(request: NextRequest) {
     
     // Convert RSS2JSON format to our expected format
     const feedItems: RSSItem[] = []
-    for (let i = 0; i < Math.min(jsonData.items.length, 5); i++) {
+    for (let i = 0; i < Math.min(jsonData.items.length, RSS_POST_COUNT); i++) {
       const item = jsonData.items[i]
       
       // Extract image from content or use enclosure/thumbnail
