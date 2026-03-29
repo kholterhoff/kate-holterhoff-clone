@@ -20,7 +20,7 @@ export default function Analyst() {
           </ul>  
         </div>
 
-          <h2>RedMonk Blog</h2>
+          <h2>Kate&apos;s RedMonk Blog: console.log()</h2>
         {/* RSS Feed Section */}
         <div className="mt-12">
           <RSSFeed />

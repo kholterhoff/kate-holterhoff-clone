@@ -17,7 +17,6 @@ export default function MonkCastFeed() {
   const [episodes, setEpisodes] = useState<MonkCastItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [updating, setUpdating] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -69,26 +68,6 @@ export default function MonkCastFeed() {
     }
   }, [])
 
-  const handleRefreshMonkCast = async () => {
-    setUpdating(true)
-    try {
-      const response = await fetch('/api/monkcast-update', { method: 'POST' })
-      const result = await response.json()
-
-      if (result.success && result.data.posts.length > 0) {
-        setEpisodes(result.data.posts.slice(0, MONKCAST_POST_COUNT))
-        setError(null)
-      } else {
-        setError('Unable to refresh MonkCast episodes right now.')
-      }
-    } catch (err) {
-      console.error('Manual MonkCast refresh error:', err)
-      setError('Unable to refresh MonkCast episodes right now.')
-    } finally {
-      setUpdating(false)
-    }
-  }
-
   const formatDate = (dateString: string) => {
     try {
       const date = new Date(dateString)
@@ -105,16 +84,16 @@ export default function MonkCastFeed() {
   if (loading && episodes.length === 0) {
     return (
       <div className="w-full">
-        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <h2 className="text-2xl font-bold">The MonkCast</h2>
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold">The MonkCast</h1>
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[...Array(MONKCAST_POST_COUNT)].map((_, i) => (
-            <div key={i} className="animate-pulse">
-              <div className="rounded-[1.35rem] bg-gradient-to-br from-coral via-orange to-[#ffb48d] p-[1px] shadow-[0_20px_45px_-28px_rgba(245,122,73,0.55)]">
-                <div className="overflow-hidden rounded-[1.28rem] bg-black">
+            <div key={i} className="h-full animate-pulse">
+              <div className="h-full rounded-[1.45rem] bg-gradient-to-br from-coral via-orange to-[#ffb48d] p-[3px] shadow-[0_20px_45px_-28px_rgba(245,122,73,0.55)]">
+                <div className="flex h-full flex-col overflow-hidden rounded-[1.24rem] bg-black">
                   <div className="aspect-video w-full bg-gray-100" />
-                  <div className="min-h-[12rem] p-5 sm:p-6">
+                  <div className="flex min-h-[12rem] flex-1 flex-col p-5 sm:p-6">
                     <div className="mb-3 h-3 w-24 rounded bg-gray-700" />
                     <div className="mb-3 h-7 w-5/6 rounded bg-gray-600" />
                     <div className="mb-5 h-7 w-4/6 rounded bg-gray-600" />
@@ -132,8 +111,8 @@ export default function MonkCastFeed() {
   if (error && episodes.length === 0) {
     return (
       <div className="w-full">
-        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <h2 className="text-2xl font-bold">The MonkCast</h2>
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold">The MonkCast</h1>
         </div>
         <div className="rounded-lg border border-red-200 bg-red-50 p-6 text-center">
           <p className="text-red-600">{error}</p>
@@ -147,46 +126,20 @@ export default function MonkCastFeed() {
 
   return (
     <div className="w-full">
-      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <h2 className="text-2xl font-bold">The MonkCast</h2>
-        <button
-          onClick={handleRefreshMonkCast}
-          disabled={updating}
-          className={`px-3 py-1 text-sm rounded-md border transition-colors ${
-            updating 
-              ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
-              : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50 hover:text-coral'
-          }`}
-          title="Refresh MonkCast feed"
-        >
-          {updating ? (
-            <>
-              <svg className="w-4 h-4 animate-spin inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-              Updating...
-            </>
-          ) : (
-            <>
-              <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-              Refresh
-            </>
-          )}
-        </button>
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold">The MonkCast</h1>
       </div>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
         {episodes.map((episode, index) => (
           <Link
             key={index}
             href={episode.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="group block"
+            className="group block h-full"
           >
-            <div className="rounded-[1.35rem] bg-gradient-to-br from-coral via-orange to-[#ffb48d] p-[1px] shadow-[0_22px_55px_-32px_rgba(245,122,73,0.7)] transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:scale-[1.01] group-hover:shadow-[0_30px_70px_-28px_rgba(245,122,73,0.9)]">
-              <article className="overflow-hidden rounded-[1.28rem] bg-black">
+            <div className="h-full rounded-[1.45rem] bg-gradient-to-br from-coral via-orange to-[#ffb48d] p-[3px] shadow-[0_22px_55px_-32px_rgba(245,122,73,0.7)] transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:scale-[1.01] group-hover:shadow-[0_30px_70px_-28px_rgba(245,122,73,0.9)]">
+              <article className="flex h-full flex-col overflow-hidden rounded-[1.24rem] bg-black">
                 <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-coral to-orange">
                   <div
                     className={`absolute inset-0 items-center justify-center bg-gradient-to-br from-coral to-orange ${
@@ -211,9 +164,9 @@ export default function MonkCastFeed() {
                       }}
                     />
                   ) : null}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black to-transparent" />
                 </div>
-                <div className="flex min-h-[12rem] flex-col bg-black p-5 sm:p-6">
+                <div className="flex min-h-[12rem] flex-1 flex-col bg-black p-5 sm:p-6">
                   <time className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-white/80">
                     {formatDate(episode.pubDate)}
                   </time>

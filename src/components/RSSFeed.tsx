@@ -63,7 +63,6 @@ export default function RSSFeed() {
   const [posts, setPosts] = useState<RSSItem[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [updating, setUpdating] = useState(false)
 
   useEffect(() => {
     console.log('RSS Feed component mounted and starting to fetch data...')
@@ -156,27 +155,6 @@ export default function RSSFeed() {
     fetchRSS()
   }, [])
 
-  const handleRefreshRSS = async () => {
-    setUpdating(true)
-    try {
-      console.log('Manual RSS refresh triggered')
-      const response = await fetch('/api/rss-update', { method: 'POST' })
-      const result = await response.json()
-      
-      if (result.success && result.data.posts.length > 0) {
-        console.log('RSS refresh successful, updating posts')
-        setPosts(result.data.posts.slice(0, RSS_POST_COUNT))
-        setError(null)
-      } else {
-        console.error('RSS refresh failed:', result)
-      }
-    } catch (err) {
-      console.error('Manual RSS refresh error:', err)
-    } finally {
-      setUpdating(false)
-    }
-  }
-
   const formatDate = (dateString: string) => {
     try {
       const date = new Date(dateString)
@@ -194,13 +172,13 @@ export default function RSSFeed() {
     return (
       <div className="w-full">
         <h2 className="text-2xl font-bold mb-6">console.log() – Debugging the tech industry</h2>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[...Array(RSS_POST_COUNT)].map((_, i) => (
-            <div key={i} className="animate-pulse">
-              <div className="rounded-[1.35rem] bg-gradient-to-br from-coral via-orange to-[#ffb48d] p-[1px] shadow-[0_20px_45px_-28px_rgba(245,122,73,0.55)]">
-                <div className="overflow-hidden rounded-[1.28rem] bg-black">
+            <div key={i} className="h-full animate-pulse">
+              <div className="h-full rounded-[1.45rem] bg-gradient-to-br from-coral via-orange to-[#ffb48d] p-[3px] shadow-[0_20px_45px_-28px_rgba(245,122,73,0.55)]">
+                <div className="flex h-full flex-col overflow-hidden rounded-[1.24rem] bg-black">
                   <div className="h-64 bg-gray-100" />
-                  <div className="min-h-[16rem] p-5 sm:p-6">
+                  <div className="flex min-h-[16rem] flex-1 flex-col p-5 sm:p-6">
                     <div className="mb-3 h-3 w-24 rounded bg-gray-700" />
                     <div className="mb-3 h-7 w-5/6 rounded bg-gray-600" />
                     <div className="mb-3 h-7 w-4/6 rounded bg-gray-600" />
@@ -233,46 +211,20 @@ export default function RSSFeed() {
 
   return (
     <div className="w-full">
-      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mb-6">
         <h2 className="text-2xl font-bold">console.log() – Debugging the tech industry</h2>
-        <button
-          onClick={handleRefreshRSS}
-          disabled={updating}
-          className={`px-3 py-1 text-sm rounded-md border transition-colors ${
-            updating 
-              ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
-              : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50 hover:text-coral'
-          }`}
-          title="Refresh RSS feed"
-        >
-          {updating ? (
-            <>
-              <svg className="w-4 h-4 animate-spin inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-              Updating...
-            </>
-          ) : (
-            <>
-              <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-              Refresh
-            </>
-          )}
-        </button>
       </div>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post, index) => (
           <Link
             key={index}
             href={post.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="group block"
+            className="group block h-full"
           >
-            <div className="rounded-[1.35rem] bg-gradient-to-br from-coral via-orange to-[#ffb48d] p-[1px] shadow-[0_22px_55px_-32px_rgba(245,122,73,0.7)] transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:scale-[1.01] group-hover:shadow-[0_30px_70px_-28px_rgba(245,122,73,0.9)]">
-              <article className="overflow-hidden rounded-[1.28rem] bg-black">
+            <div className="h-full rounded-[1.45rem] bg-gradient-to-br from-coral via-orange to-[#ffb48d] p-[3px] shadow-[0_22px_55px_-32px_rgba(245,122,73,0.7)] transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:scale-[1.01] group-hover:shadow-[0_30px_70px_-28px_rgba(245,122,73,0.9)]">
+              <article className="flex h-full flex-col overflow-hidden rounded-[1.24rem] bg-black">
                 <div className="relative h-64 overflow-hidden bg-gradient-to-br from-coral to-orange">
                   <div
                     className={`absolute inset-0 items-center justify-center bg-gradient-to-br from-coral to-orange ${
@@ -297,9 +249,9 @@ export default function RSSFeed() {
                       }}
                     />
                   ) : null}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black to-transparent" />
                 </div>
-                <div className="flex min-h-[16rem] flex-col bg-black p-5 sm:p-6">
+                <div className="flex min-h-[16rem] flex-1 flex-col bg-black p-5 sm:p-6">
                   <time className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-white/80">
                     {formatDate(post.pubDate)}
                   </time>
