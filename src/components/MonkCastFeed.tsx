@@ -111,13 +111,15 @@ export default function MonkCastFeed() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[...Array(MONKCAST_POST_COUNT)].map((_, i) => (
             <div key={i} className="animate-pulse">
-              <div className="aspect-[3/4] overflow-hidden rounded-2xl border border-gray-200 bg-black shadow-sm">
-                <div className="h-1/2 bg-gray-100" />
-                <div className="flex h-1/2 flex-col justify-end p-5 sm:p-6">
-                  <div className="mb-3 h-3 w-24 rounded bg-gray-700" />
-                  <div className="mb-2 h-6 w-4/5 rounded bg-gray-600" />
-                  <div className="mb-2 h-6 w-3/5 rounded bg-gray-600" />
-                  <div className="h-4 w-28 rounded bg-gray-700" />
+              <div className="rounded-[1.35rem] bg-gradient-to-br from-coral via-orange to-[#ffb48d] p-[1px] shadow-[0_20px_45px_-28px_rgba(245,122,73,0.55)]">
+                <div className="overflow-hidden rounded-[1.28rem] bg-black">
+                  <div className="aspect-video w-full bg-gray-100" />
+                  <div className="min-h-[12rem] p-5 sm:p-6">
+                    <div className="mb-3 h-3 w-24 rounded bg-gray-700" />
+                    <div className="mb-3 h-7 w-5/6 rounded bg-gray-600" />
+                    <div className="mb-5 h-7 w-4/6 rounded bg-gray-600" />
+                    <div className="h-4 w-28 rounded bg-gray-700" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -183,52 +185,50 @@ export default function MonkCastFeed() {
             rel="noopener noreferrer"
             className="group block"
           >
-            <article className="aspect-[3/4] overflow-hidden rounded-2xl border border-gray-200 bg-black shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-coral/40 group-hover:shadow-xl">
-              <div className="relative h-1/2 overflow-hidden bg-gradient-to-br from-coral to-orange">
-                <div
-                  className={`absolute inset-0 items-center justify-center bg-gradient-to-br from-coral to-orange ${
-                    episode.image ? "hidden" : "flex"
-                  }`}
-                  data-fallback="true"
-                >
-                  <span className="text-sm font-semibold tracking-[0.3em] text-white">MC</span>
+            <div className="rounded-[1.35rem] bg-gradient-to-br from-coral via-orange to-[#ffb48d] p-[1px] shadow-[0_22px_55px_-32px_rgba(245,122,73,0.7)] transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:scale-[1.01] group-hover:shadow-[0_30px_70px_-28px_rgba(245,122,73,0.9)]">
+              <article className="overflow-hidden rounded-[1.28rem] bg-black">
+                <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-coral to-orange">
+                  <div
+                    className={`absolute inset-0 items-center justify-center bg-gradient-to-br from-coral to-orange ${
+                      episode.image ? "hidden" : "flex"
+                    }`}
+                    data-fallback="true"
+                  >
+                    <span className="text-sm font-semibold tracking-[0.3em] text-white">MC</span>
+                  </div>
+                  {episode.image ? (
+                    <img
+                      src={episode.image}
+                      alt={episode.title}
+                      className="absolute inset-0 h-full w-full object-contain bg-black"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement
+                        target.style.display = "none"
+                        const fallback = target.parentElement?.querySelector('[data-fallback="true"]') as HTMLElement | null
+                        if (fallback) {
+                          fallback.style.display = "flex"
+                        }
+                      }}
+                    />
+                  ) : null}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-transparent" />
                 </div>
-                {episode.image ? (
-                  <img
-                    src={episode.image}
-                    alt={episode.title}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement
-                      target.style.display = "none"
-                      const fallback = target.parentElement?.querySelector('[data-fallback="true"]') as HTMLElement | null
-                      if (fallback) {
-                        fallback.style.display = "flex"
-                      }
-                    }}
-                  />
-                ) : null}
-                <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-transparent to-black/20" />
-              </div>
-              <div className="flex h-1/2 flex-col justify-end bg-black p-5 sm:p-6">
-                <time className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-white/85">
-                  {formatDate(episode.pubDate)}
-                </time>
+                <div className="flex min-h-[12rem] flex-col bg-black p-5 sm:p-6">
+                  <time className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-white/80">
+                    {formatDate(episode.pubDate)}
+                  </time>
 
-                <h3 className="mb-3 text-xl font-semibold leading-tight text-white transition-colors duration-200 group-hover:text-orange line-clamp-3">
-                  {episode.title}
-                </h3>
+                  <h3 className="mb-5 text-xl font-semibold leading-snug text-white transition-colors duration-200 group-hover:text-[#ffd7c4]">
+                    {episode.title}
+                  </h3>
 
-                <p className="mb-4 text-sm leading-6 text-white/90 line-clamp-3">
-                  {episode.description}
-                </p>
-
-                <span className="inline-flex items-center text-sm font-medium text-white/90 transition-colors group-hover:text-white">
-                  Open episode
-                  <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </span>
-              </div>
-            </article>
+                  <span className="mt-auto inline-flex items-center text-sm font-medium text-white/90 transition-colors group-hover:text-white">
+                    Open episode
+                    <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  </span>
+                </div>
+              </article>
+            </div>
           </Link>
         ))}
       </div>
