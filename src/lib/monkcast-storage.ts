@@ -1,4 +1,5 @@
 import { promises as fs } from 'fs'
+import os from 'os'
 import path from 'path'
 
 export interface FeedItem {
@@ -15,7 +16,15 @@ export interface FeedData {
   lastUpdated: string
 }
 
-const MONKCAST_CACHE_FILE = path.join(process.cwd(), '.monkcast-cache.json')
+function resolveCacheFile(filename: string): string {
+  const baseDir = process.env.NODE_ENV === 'production'
+    ? os.tmpdir()
+    : process.cwd()
+
+  return path.join(baseDir, filename)
+}
+
+const MONKCAST_CACHE_FILE = resolveCacheFile('.monkcast-cache.json')
 
 export async function saveMonkCastData(data: FeedData): Promise<void> {
   try {

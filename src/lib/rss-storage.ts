@@ -1,4 +1,5 @@
 import { promises as fs } from 'fs'
+import os from 'os'
 import path from 'path'
 
 export interface RSSItem {
@@ -15,7 +16,15 @@ export interface RSSData {
   lastUpdated: string
 }
 
-const RSS_CACHE_FILE = path.join(process.cwd(), '.rss-cache.json')
+function resolveCacheFile(filename: string): string {
+  const baseDir = process.env.NODE_ENV === 'production'
+    ? os.tmpdir()
+    : process.cwd()
+
+  return path.join(baseDir, filename)
+}
+
+const RSS_CACHE_FILE = resolveCacheFile('.rss-cache.json')
 
 export async function saveRSSData(data: RSSData): Promise<void> {
   try {
