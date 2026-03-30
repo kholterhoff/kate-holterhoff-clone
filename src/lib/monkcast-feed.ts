@@ -1,14 +1,12 @@
 import { loadCachedFeedData, saveCachedFeedData, isFeedDataExpired, type CachedFeedData } from '@/lib/feed-cache'
 import { extractImageFromMarkup, stripHtml, truncateText, type FeedItem } from '@/lib/feed-utils'
+import { MONKCAST_POST_COUNT, type MonkCastItem } from '@/lib/monkcast-feed-shared'
 
 const MONKCAST_CACHE_FILE = '.monkcast-cache.json'
 const MONKCAST_RSS_URL = 'https://api.riverside.fm/hosting/tBthkY3f.rss'
 const DEFAULT_PODCAST_IMAGE = 'https://redmonk.com/wp-content/uploads/2018/07/Monkchips-1.jpg'
 const REDMONK_URL_PATTERN = /https?:\/\/redmonk\.com\/[^\s"'<>)]+/i
 
-export const MONKCAST_POST_COUNT = 6
-
-export type MonkCastItem = FeedItem
 export type MonkCastData = CachedFeedData<MonkCastItem>
 
 interface MonkCastFeedItem extends Record<string, unknown> {

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
-import { loadMonkCastData, MONKCAST_POST_COUNT } from '@/lib/monkcast-feed'
+import { loadMonkCastData } from '@/lib/monkcast-feed'
+import { MONKCAST_POST_COUNT } from '@/lib/monkcast-feed-shared'
 
 export async function GET() {
   try {

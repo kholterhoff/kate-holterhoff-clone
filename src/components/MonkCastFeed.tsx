@@ -1,8 +1,60 @@
-import FeedSection from '@/components/FeedSection'
-import { getMonkCastPosts } from '@/lib/monkcast-feed'
+'use client'
 
-export default async function MonkCastFeed() {
-  const episodes = await getMonkCastPosts()
+import { useEffect, useState } from 'react'
+import FeedSection from '@/components/FeedSection'
+import { MONKCAST_POST_COUNT, type MonkCastItem } from '@/lib/monkcast-feed-shared'
+
+interface FeedResponse {
+  success: boolean
+  data: {
+    posts: MonkCastItem[]
+    lastUpdated: string
+  }
+}
+
+export default function MonkCastFeed() {
+  const [episodes, setEpisodes] = useState<MonkCastItem[]>([])
+
+  useEffect(() => {
+    let cancelled = false
+
+    const loadEpisodes = async () => {
+      try {
+        const cachedResponse = await fetch('/api/monkcast', { cache: 'no-store' })
+        if (cachedResponse.ok) {
+          const cachedData = (await cachedResponse.json()) as FeedResponse
+          if (cachedData.success && cachedData.data.posts.length >= MONKCAST_POST_COUNT) {
+            if (!cancelled) {
+              setEpisodes(cachedData.data.posts.slice(0, MONKCAST_POST_COUNT))
+            }
+            return
+          }
+        }
+
+        const liveResponse = await fetch('/api/monkcast-update', {
+          method: 'POST',
+          cache: 'no-store',
+        })
+
+        if (!liveResponse.ok) {
+          return
+        }
+
+        const liveData = (await liveResponse.json()) as FeedResponse
+        if (liveData.success && liveData.data.posts.length > 0 && !cancelled) {
+          setEpisodes(liveData.data.posts.slice(0, MONKCAST_POST_COUNT))
+        }
+      } catch {
+        // Keep the empty state if network requests fail.
+      }
+    }
+
+    void loadEpisodes()
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   return (
     <FeedSection

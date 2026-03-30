@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
-import { loadRSSData, RSS_POST_COUNT } from '@/lib/rss-feed'
+import { loadRSSData } from '@/lib/rss-feed'
+import { RSS_POST_COUNT } from '@/lib/rss-feed-shared'
 
 export async function GET() {
   try {

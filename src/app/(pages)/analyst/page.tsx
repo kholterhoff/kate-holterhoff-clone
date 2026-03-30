@@ -1,13 +1,11 @@
 import RSSFeed from '@/components/RSSFeed'
 import MonkCastFeed from '@/components/MonkCastFeed'
-import FeedCacheWarmer from '@/components/FeedCacheWarmer'
 
 export const revalidate = 3600
 
 export default function Analyst() {
   return (
     <div className="max-w-4xl mx-auto">
-      <FeedCacheWarmer />
       <div className="space-y-8">
         <div id="research">
           <h2>Research</h2>
