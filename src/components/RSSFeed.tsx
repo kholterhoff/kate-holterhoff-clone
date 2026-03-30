@@ -58,6 +58,7 @@ export default function RSSFeed() {
 
   return (
     <FeedSection
+      title="Kate's RedMonk Blog: console.log()"
       items={posts}
       actionLabel="Read more"
       ctaHref="https://redmonk.com/kholterhoff/"

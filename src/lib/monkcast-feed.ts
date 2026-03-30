@@ -123,15 +123,18 @@ function formatEpisodeDescription(item: MonkCastFeedItem): string {
 async function buildEpisode(item: MonkCastFeedItem, feedImage?: string): Promise<MonkCastItem> {
   const redmonkUrl = extractRedmonkUrl(item)
   const episodeImage = extractFeedImage(item)
+  const isGenericLogo = episodeImage === feedImage || episodeImage === DEFAULT_PODCAST_IMAGE
   const coverImage =
-    !episodeImage && redmonkUrl ? await extractCoverImageFromRedmonk(redmonkUrl) : undefined
+    (!episodeImage || isGenericLogo) && redmonkUrl
+      ? await extractCoverImageFromRedmonk(redmonkUrl)
+      : undefined
 
   return {
     title: item.title || 'Untitled episode',
     link: redmonkUrl || item.link || 'https://monkcast.com/',
     description: formatEpisodeDescription(item),
     pubDate: item.pubDate || new Date().toISOString(),
-    image: episodeImage || coverImage || feedImage || DEFAULT_PODCAST_IMAGE,
+    image: coverImage || episodeImage || feedImage || DEFAULT_PODCAST_IMAGE,
     content: String(item.content || item.description || item.summary || ''),
   }
 }
