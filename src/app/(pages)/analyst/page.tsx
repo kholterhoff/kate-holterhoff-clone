@@ -16,7 +16,7 @@ export default function Analyst() {
             <li><a href="https://redmonk.com/kholterhoff/category/messaging/">Messaging/MQs</a></li>
             <li><a href="https://redmonk.com/kholterhoff/category/open-source/">Open Source</a></li>
             <li><a href="https://redmonk.com/kholterhoff/category/devx/">DevX</a></li>   
-            <li><a href="https://em360tech.com/podcast/honeycomb-measuring-success-incident-response-program">Observability</a></li>
+            <li><a href="https://em360tech.com/podcasts/honeycomb-measuring-success-incident-response-program">Observability</a></li>
             <li><a href="https://redmonk.com/kholterhoff/category/design/">Design</a></li>
           </ul>  
         </div>

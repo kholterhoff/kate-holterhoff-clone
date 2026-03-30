@@ -147,7 +147,7 @@ export default function Academic() {
               </p>
               <p>
                 "
-                <a href="http://www.digitalhumanities.org/dhq/vol/11/3/000324/000324.html">
+                <a href="https://dhq.digitalhumanities.org/vol/11/3/000324/000324.html">
                   From Disclaimer to Critique: Race and the Digital Image Archivist
                 </a>
                 ." <em>Digital Humanities Quarterly</em>. 11.3 (2017).
@@ -163,14 +163,14 @@ export default function Academic() {
               </p>
               <p>
                 "
-                <a href="http://dx.doi.org/10.1080/13555502.2016.1152877">
+                <a href="https://academic.oup.com/jvc/article-abstract/21/2/205/4095167">
                   Liberal Evolutionism and the Satirical Ape
                 </a>
                 ." <em>Journal of Victorian Culture</em>. 21.2 (2016): 1-21.
               </p>
               <p>
                 "
-                <a href="http://link.springer.com/article/10.1007%2Fs10739-014-9377-0">
+                <a href="https://link.springer.com/article/10.1007/s10739-014-9377-0">
                   The History and Reception of Charles Darwin's Hypothesis of
                   Pangenesis
                 </a>
@@ -179,7 +179,7 @@ export default function Academic() {
               </p>
               <p>
                 "
-                <a href="http://www.victoriannetwork.org/index.php/vn/article/view/13">
+                <a href="https://www.victoriannetwork.org/index.php/vn/article/view/13">
                   Beauty as a Terministic Screen in Charles Darwin's{" "}
                   <em>The Descent of Man</em>
                 </a>
@@ -187,7 +187,7 @@ export default function Academic() {
               </p>
               <p>
                 "
-                <a href="http://jvc.oup.com/2013/10/21/ethics-and-the-digital-archive-the-case-for-visualizing-h-rider-haggard/">
+                <a href="https://jvc.oup.com/2013/10/21/ethics-and-the-digital-archive-the-case-for-visualizing-h-rider-haggard/">
                   Ethics and the Digital Archive: The Case for Visualizing H. Rider
                   Haggard
                 </a>
@@ -198,7 +198,7 @@ export default function Academic() {
               <h2>Book Chapters</h2>
               <p>
                 "
-                <a href="https://www.degruyter.com/document/doi/10.7765/9781526161703.00020/pdf?licenseType=restricted">
+                <a href="https://www.manchesterhive.com/display/9781526161703/9781526161703.00020.xml">
                   Romance Fiction, Folk Tales, and Poetry: Amy Sawyer and the Arts and
                   Crafts Movement
                 </a>
@@ -219,7 +219,7 @@ export default function Academic() {
                 </a>
                 ."{" "}
                 <em>
-                  <a href="https://www.cambridgescholars.com/product/978-1-5275-7281-2">
+                  <a href="https://cambridgescholars.com/product/978-1-5275-7281-2/">
                     Re-examining Arthur Conan Doyle
                   </a>
                 </em>
@@ -259,7 +259,7 @@ export default function Academic() {
               </p>
               <h2>Special Issues Edited for Journal</h2>
               <p>
-                <a href="http://www.ncgsjournal.com/issue112/issue112.htm">
+                <a href="https://www.ncgsjournal.com/issue112/issue112.html">
                   "Illustration and Gender." Special Edition of{" "}
                   <em>Nineteenth‑Century Gender Studies</em>
                 </a>
@@ -286,7 +286,7 @@ export default function Academic() {
                 <em>Nebo Blog</em>. 25 January 2019.
               </p>
               <p>
-                <a href="https://www.chronicle.com/blogs/profhacker/genius-alternative-social-media/65695">
+                <a href="https://www.chronicle.com/blogs/profhacker/genius-alternative-social-media">
                   "Genius.com as an Alternative Social Media."{" "}
                 </a>
                 <em>ProfHacker: The Chronicle of Higher Education</em>. 30 August
@@ -303,7 +303,7 @@ export default function Academic() {
                 <em>Rider Haggard Society Journal</em>. 126 (July 2018): 4-6.
               </p>
               <p>
-                <a href="https://www.chronicle.com/blogs/profhacker/digital-archives-data-set-creation/64390">
+                <a href="https://www.chronicle.com/blogs/profhacker/digital-archives-data-set-creation">
                   "Using Digital Archives to Teach Data Set Creation and Visualization
                   Design."
                 </a>{" "}
@@ -321,7 +321,7 @@ export default function Academic() {
               </p>
               <h2>Books Edited</h2>
               <p>
-                <a href="https://www.victoriansecrets.co.uk/book/the-autobiography-of-christopher-kirkland/">
+                <a href="https://books.google.com/books/about/The_Autobiography_of_Christopher_Kirklan.html?id=L-J-vYI-KjsC">
                   <em>The Autobiography of Christopher Kirkland </em>by Eliza Lynn
                   Linton{" "}
                 </a>{" "}
@@ -329,7 +329,7 @@ export default function Academic() {
                 <em>Victorian Secrets</em>, 2011.
               </p>
               <p>
-                <a href="https://www.victoriansecrets.co.uk/book/sowing-the-wind/">
+                <a href="https://www.goodreads.com/book/show/24616432-sowing-the-wind">
                   <em>Sowing the Wind</em> by Eliza Lynn Linton
                 </a>{" "}
                 [1867]. Eds. Deborah Meem and Kate Holterhoff. Brighton, UK:{" "}
@@ -421,12 +421,12 @@ export default function Academic() {
               </p>
               <p>
                 <em>
-                  <a href="http://sites.bu.edu/impact/previous-issues/impact-winter-2017/education-in-nineteenth-century-british-literature-exclusion-as-innovation/">
+                  <a href="https://sites.bu.edu/impact/previous-issues/impact-winter-2017/education-in-nineteenth-century-british-literature-exclusion-as-innovation/">
                     Education in Nineteenth-Century British Literature: Exclusion as
                     Innovation
                   </a>
                 </em>
-                <a href="http://sites.bu.edu/impact/previous-issues/impact-winter-2017/education-in-nineteenth-century-british-literature-exclusion-as-innovation/">
+                <a href="https://sites.bu.edu/impact/previous-issues/impact-winter-2017/education-in-nineteenth-century-british-literature-exclusion-as-innovation/">
                   {" "}
                   by Sheila Cordner
                 </a>{" "}
@@ -458,7 +458,7 @@ export default function Academic() {
                 mobile device appropriate format. Currently, the site contains 1,900
                 images and receives approximately 1,500 page views every month. Visual
                 Haggard is a federated archive with{" "}
-                <a href="http://www.nines.org/">
+                <a href="https://nines.org/">
                   NINES, the Networked Infrastructure for Nineteenth-Century
                   Electronic Scholarship
                 </a>
@@ -493,7 +493,7 @@ export default function Academic() {
                   <tr>
                     <td>ENGL 1102</td>
                     <td>
-                      <a href="http://1102vcdahrh.wordpress.com/">
+                      <a href="https://1102vcdahrh.wordpress.com/">
                         Visual Culture, Digital Archives and H. Rider Haggard
                       </a>
                     </td>
@@ -502,7 +502,7 @@ export default function Academic() {
                   <tr>
                     <td>ENGL 1102</td>
                     <td>
-                      <a href="http://1102theliteratureofnewmedia.weebly.com/">
+                      <a href="https://1102theliteratureofnewmedia.weebly.com/">
                         The Literature of New Media
                       </a>
                     </td>
@@ -519,7 +519,6 @@ export default function Academic() {
                       <a href="https://literarystudiesandtheoryspring2016.wordpress.com/">
                         Literary Studies and Theory
                       </a>
-                      <a />
                     </td>
                     <td>2016</td>
                   </tr>
