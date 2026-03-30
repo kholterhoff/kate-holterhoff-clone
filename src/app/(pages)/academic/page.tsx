@@ -441,7 +441,7 @@ export default function Academic() {
                   <tbody>
                     <tr style={{ backgroundColor: "#fff" }}>
                       <td>
-                        <a href="www.visualhaggard.org">
+                        <a href="https://www.visualhaggard.org/">
                           Visual Haggard: The Illustration Archive
                         </a>
                       </td>
@@ -451,7 +451,7 @@ export default function Academic() {
                 </table>
               </h3>
               <p>
-                I direct and edit <a href="www.visualhaggard.org"><em>Visual Haggard</em></a>, a digital archive intended
+                I direct and edit <a href="https://www.visualhaggard.org/"><em>Visual Haggard</em></a>, a digital archive intended
                 to preserve, centralize, and improve access to the illustrations from
                 the novels published by H. Rider Haggard. This literary and art historical resource aspires to make all
                 Haggard illustrations readily available in a high-resolution and
