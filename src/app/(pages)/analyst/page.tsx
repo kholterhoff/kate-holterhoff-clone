@@ -1,11 +1,14 @@
 import RSSFeed from '@/components/RSSFeed'
 import MonkCastFeed from '@/components/MonkCastFeed'
+import FeedCacheWarmer from '@/components/FeedCacheWarmer'
+
+export const revalidate = 3600
 
 export default function Analyst() {
   return (
     <div className="max-w-4xl mx-auto">
+      <FeedCacheWarmer />
       <div className="space-y-8">
-
         <div id="research">
           <h2>Research</h2>
           <ul> 
@@ -20,8 +23,6 @@ export default function Analyst() {
           </ul>  
         </div>
 
-          <h2>Kate&apos;s RedMonk Blog: console.log()</h2>
-        {/* RSS Feed Section */}
         <div className="mt-12">
           <RSSFeed />
         </div>

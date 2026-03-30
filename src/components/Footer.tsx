@@ -1,13 +1,11 @@
-import React from 'react';
-
 const Footer = () => {
-  const currentYear = 2026;
+  const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="text-center py-4">
+    <div className="py-4 text-center">
       <p className="text-sm text-gray-600">© {currentYear} Kate Holterhoff</p>
-    </footer>
-  );
-};
+    </div>
+  )
+}
 
-export default Footer;
+export default Footer

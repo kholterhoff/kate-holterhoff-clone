@@ -5,20 +5,20 @@ import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import HamburgerButton from './HamburgerButton'
 import MobileMenu from './MobileMenu'
+import { navigationItems } from '@/lib/navigation-items'
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
+  const isHomePage = pathname === '/'
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
+    setIsMobileMenuOpen((open) => !open)
   }
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false)
   }
-
-  const isActive = (href: string) => pathname === href
 
   return (
     <>
@@ -32,54 +32,35 @@ export default function Navigation() {
           )}
         </div>
 
-        {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-8">
-          <Link
-            href="/"
-            className={`nav-link text-base transition-colors ${
-              pathname === '/'
-                ? (isActive('/') ? 'font-bold text-white' : 'text-white/80 hover:text-white')
-                : (isActive('/') ? 'font-bold text-orange' : 'text-gray-700 hover:text-orange')
-            }`}
-          >
-            home
-          </Link>
-          <Link
-            href="/analyst"
-            className={`nav-link text-base transition-colors ${
-              pathname === '/'
-                ? 'text-white/80 hover:text-white'
-                : (isActive('/analyst') ? 'font-bold text-orange' : 'text-gray-700 hover:text-orange')
-            }`}
-          >
-            analyst
-          </Link>
-          <Link
-            href="/academic"
-            className={`nav-link text-base transition-colors ${
-              pathname === '/'
-                ? 'text-white/80 hover:text-white'
-                : (isActive('/academic') ? 'font-bold text-coral' : 'text-gray-700 hover:text-orange')
-            }`}
-          >
-            academic
-          </Link>
+          {navigationItems.map((item) => {
+            const isActive = pathname === item.href
+            const className = isHomePage
+              ? isActive
+                ? item.homeActiveClassName
+                : item.homeInactiveClassName
+              : isActive
+                ? item.pageActiveClassName
+                : item.pageInactiveClassName
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`nav-link text-base transition-colors ${className}`}
+              >
+                {item.label}
+              </Link>
+            )
+          })}
         </div>
 
-        {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <HamburgerButton
-            isOpen={isMobileMenuOpen}
-            onClick={toggleMobileMenu}
-          />
+          <HamburgerButton isHomePage={isHomePage} isOpen={isMobileMenuOpen} onClick={toggleMobileMenu} />
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      <MobileMenu
-        isOpen={isMobileMenuOpen}
-        onToggle={closeMobileMenu}
-      />
+      <MobileMenu isOpen={isMobileMenuOpen} onToggle={closeMobileMenu} pathname={pathname} />
     </>
   )
 }

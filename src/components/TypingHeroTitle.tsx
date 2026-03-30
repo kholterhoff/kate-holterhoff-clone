@@ -2,68 +2,62 @@
 
 import { useState, useEffect } from 'react'
 
+const FULL_TEXT = 'kateholterhoff'
+const BOLD_LENGTH = 4
+
 export default function TypingHeroTitle() {
-  const [displayedText, setDisplayedText] = useState('')
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isTyping, setIsTyping] = useState(false)
-  const [typingComplete, setTypingComplete] = useState(false)
+  const [visibleLength, setVisibleLength] = useState(0)
 
-  const fullText = "kateholterhoff"
-  const boldPortion = "kate" // First 4 characters should be bold
-
-  // Start typing after initial delay
   useEffect(() => {
-    const startTimer = setTimeout(() => {
-      setIsTyping(true)
+    let intervalId: number | undefined
+
+    const startTimer = window.setTimeout(() => {
+      intervalId = window.setInterval(() => {
+        setVisibleLength((currentLength) => {
+          if (currentLength >= FULL_TEXT.length) {
+            if (intervalId) {
+              window.clearInterval(intervalId)
+            }
+
+            return currentLength
+          }
+
+          return currentLength + 1
+        })
+      }, 150)
     }, 1000)
 
-    return () => clearTimeout(startTimer)
+    return () => {
+      window.clearTimeout(startTimer)
+      if (intervalId) {
+        window.clearInterval(intervalId)
+      }
+    }
   }, [])
 
-  // Typing effect
-  useEffect(() => {
-    if (!isTyping || currentIndex >= fullText.length) {
-      if (currentIndex >= fullText.length) {
-        setTypingComplete(true)
-      }
-      return
-    }
-
-    const timer = setTimeout(() => {
-      setDisplayedText(prev => prev + fullText[currentIndex])
-      setCurrentIndex(prev => prev + 1)
-    }, 150)
-
-    return () => clearTimeout(timer)
-  }, [currentIndex, isTyping, fullText.length])
-
-
+  const displayedText = FULL_TEXT.slice(0, visibleLength)
 
   const renderText = () => {
-    if (displayedText.length <= boldPortion.length) {
-      // Still typing the bold portion
+    if (displayedText.length <= BOLD_LENGTH) {
       return (
         <span className="font-bold">
           {displayedText}
         </span>
       )
-    } else {
-      // Typing the normal portion
-      const boldText = displayedText.slice(0, boldPortion.length)
-      const normalText = displayedText.slice(boldPortion.length)
-
-      return (
-        <>
-          <span className="font-bold">{boldText}</span>
-          <span className="font-normal">{normalText}</span>
-        </>
-      )
     }
+
+    const boldText = displayedText.slice(0, BOLD_LENGTH)
+    const normalText = displayedText.slice(BOLD_LENGTH)
+
+    return (
+      <>
+        <span className="font-bold">{boldText}</span>
+        <span className="font-normal">{normalText}</span>
+      </>
+    )
   }
 
   return (
-    <span className="typing-container">
-      {renderText()}
-    </span>
+    <span className="typing-container">{renderText()}</span>
   )
 }

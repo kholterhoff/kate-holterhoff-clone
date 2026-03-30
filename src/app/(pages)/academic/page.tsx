@@ -1,20 +1,18 @@
 export default function Academic() {
   return (
-        <div className="max-w-4xl mx-auto">
-          <div className="space-y-8">
-           <>
-           {/* <h1>Curriculumn Vitae</h1> */}
-            <div id="research">
-              <h2>Research</h2>
-              <ul>
-                <li>19C Literature</li>
-                <li>Periodical Studies</li>
-                <li>History of Science: Evolution</li>
-                <li>Visual Culture</li>
-                <li>Digital Humanities</li>
-                <li>Adventure Fiction</li>
-              </ul>
-            </div>
+    <div className="max-w-4xl mx-auto">
+      <div className="space-y-8">
+        <div id="research">
+          <h2>Research</h2>
+          <ul>
+            <li>19C Literature</li>
+            <li>Periodical Studies</li>
+            <li>History of Science: Evolution</li>
+            <li>Visual Culture</li>
+            <li>Digital Humanities</li>
+            <li>Adventure Fiction</li>
+          </ul>
+        </div>
             <div id="professional appointments">
               <h2>Professional Appointments</h2>
               <table>
@@ -455,15 +453,7 @@ export default function Academic() {
               <p>
                 I direct and edit <em>Visual Haggard</em>, a digital archive intended
                 to preserve, centralize, and improve access to the illustrations from
-                the novels published by H. Rider Haggard. Although the archive is{" "}
-                <a href="https://redmonk.com/kholterhoff/2022/12/01/the-end-of-herokus-free-tier/">
-                  currently offline
-                </a>{" "}
-                (it is accessible using the{" "}
-                <a href="https://web.archive.org/web/20220815220555/http://www.visualhaggard.org/">
-                  Wayback Machine
-                </a>
-                ), this a literary and art historical resource aspires to make all
+                the novels published by H. Rider Haggard. This literary and art historical resource aspires to make all
                 Haggard illustrations readily available in a high-resolution and
                 mobile device appropriate format. Currently, the site contains 1,900
                 images and receives approximately 1,500 page views every month. Visual
@@ -492,20 +482,12 @@ export default function Academic() {
                   </tr>
                   <tr>
                     <td>ENGL 1102</td>
-                    <td>
-                      {/* <a href="courses/S18_ENG_1102/Victorian_Digital_Humanities.md"> */}
-                      Victorian Digital Humanities
-                      {/* </a> */}
-                    </td>
+                    <td>Victorian Digital Humanities</td>
                     <td>2018</td>
                   </tr>
                   <tr>
                     <td>ENGL 1102</td>
-                    <td>
-                      {/* <a href="courses/F17_ENG_1102/Victorians_In_Cyberspace.md"> */}
-                      Victorians in Cyberspace
-                      {/* </a> */}
-                    </td>
+                    <td>Victorians in Cyberspace</td>
                     <td>2017</td>
                   </tr>
                   <tr>
@@ -624,14 +606,7 @@ export default function Academic() {
               </table>
               <br />
             </div>
-</>
- 
-
-            
-
-            
-          </div>
-        </div>
-
+      </div>
+    </div>
   )
 }
