@@ -10,13 +10,14 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ isOpen, onToggle, pathname }: MobileMenuProps) {
-  const hasMounted = useRef(false)
+  const previousPathname = useRef(pathname)
 
   useEffect(() => {
-    if (!hasMounted.current) {
-      hasMounted.current = true
+    if (previousPathname.current === pathname) {
       return
     }
+
+    previousPathname.current = pathname
 
     if (isOpen) {
       onToggle()
