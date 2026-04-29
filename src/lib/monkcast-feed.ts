@@ -5,7 +5,9 @@ import { MONKCAST_POST_COUNT, type MonkCastItem } from '@/lib/monkcast-feed-shar
 const MONKCAST_CACHE_FILE = '.monkcast-cache.json'
 const MONKCAST_RSS_URL = 'https://api.riverside.fm/hosting/tBthkY3f.rss'
 const DEFAULT_PODCAST_IMAGE = 'https://redmonk.com/wp-content/uploads/2018/07/Monkchips-1.jpg'
-const REDMONK_URL_PATTERN = /https?:\/\/redmonk\.com\/[^\s"'<>)]+/i
+const REDMONK_URL_PATTERN = /https?:\/\/redmonk\.com\/[^\s"'<>)]+/gi
+const BROKEN_SHOW_NOTES_PATTERN =
+  /href="https?:\/\/redmonk\.com\/videos\/"[^>]*>https?:\/\/redmonk\.com\/videos\/<\/a>\s*([a-z0-9-]+\/?)/i
 
 export type MonkCastData = CachedFeedData<MonkCastItem>
 
@@ -40,19 +42,44 @@ function normalizeRedmonkUrl(url: string): string {
   }
 }
 
+function isGenericVideosPage(url: string): boolean {
+  try {
+    const parsedUrl = new URL(url)
+    return parsedUrl.hostname === 'redmonk.com' && parsedUrl.pathname.replace(/\/+$/, '') === '/videos'
+  } catch {
+    return false
+  }
+}
+
+function extractBrokenShowNotesUrl(text: string): string | undefined {
+  const match = text.match(BROKEN_SHOW_NOTES_PATTERN)
+  if (!match?.[1]) {
+    return undefined
+  }
+
+  return normalizeRedmonkUrl(`https://redmonk.com/videos/${match[1]}`)
+}
+
 function extractRedmonkUrl(item: MonkCastFeedItem): string | undefined {
   const candidateTexts = [item.description, item.content, item.summary, item.contentSnippet].filter(
     (value): value is string => typeof value === 'string' && value.length > 0
   )
 
   for (const text of candidateTexts) {
-    const match = text.match(REDMONK_URL_PATTERN)
-    if (!match?.[0]) {
-      continue
+    const stitchedUrl = extractBrokenShowNotesUrl(text)
+    if (stitchedUrl) {
+      return stitchedUrl
     }
 
-    const cleanedUrl = match[0].replace(/(&quot;|&gt;|&lt;|[,;.!?])+$/, '')
-    return normalizeRedmonkUrl(cleanedUrl)
+    const explicitMatches = Array.from(text.matchAll(REDMONK_URL_PATTERN))
+      .map((match) => match[0]?.replace(/(&quot;|&gt;|&lt;|[,;.!?])+$/, ''))
+      .filter((value): value is string => Boolean(value))
+      .map((value) => normalizeRedmonkUrl(value))
+      .filter((value) => !isGenericVideosPage(value))
+
+    if (explicitMatches.length > 0) {
+      return explicitMatches[explicitMatches.length - 1]
+    }
   }
 
   return undefined

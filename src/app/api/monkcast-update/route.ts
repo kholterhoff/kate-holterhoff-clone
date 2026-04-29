@@ -3,7 +3,8 @@ import { loadMonkCastData, refreshMonkCastData } from '@/lib/monkcast-feed'
 
 export async function POST(_request: NextRequest) {
   try {
-    const monkCastData = await refreshMonkCastData()
+    const forceRefresh = new URL(_request.url).searchParams.get('force') === '1'
+    const monkCastData = await refreshMonkCastData(forceRefresh)
 
     return NextResponse.json({
       success: true,
