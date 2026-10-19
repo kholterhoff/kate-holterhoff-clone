@@ -4,11 +4,6 @@ import { getRSSPosts } from '@/lib/rss-feed'
 export default async function RSSFeed() {
   const posts = await getRSSPosts()
 
-  return () => {
-      cancelled = true
-    }
-  }, [])
-
   return (
     <FeedSection
       title="Kate's RedMonk Blog: console.log()"
