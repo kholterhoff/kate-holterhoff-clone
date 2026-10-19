@@ -1,57 +1,10 @@
-'use client'
-
-import { useEffect, useState } from 'react'
 import FeedSection from '@/components/FeedSection'
-import { fallbackPosts, RSS_POST_COUNT, type RSSItem } from '@/lib/rss-feed-shared'
+import { getRSSPosts } from '@/lib/rss-feed'
 
-interface FeedResponse {
-  success: boolean
-  data: {
-    posts: RSSItem[]
-    lastUpdated: string
-  }
-}
+export default async function RSSFeed() {
+  const posts = await getRSSPosts()
 
-export default function RSSFeed() {
-  const [posts, setPosts] = useState<RSSItem[]>(fallbackPosts)
-
-  useEffect(() => {
-    let cancelled = false
-
-    const loadPosts = async () => {
-      try {
-        const cachedResponse = await fetch('/api/rss', { cache: 'no-store' })
-        if (cachedResponse.ok) {
-          const cachedData = (await cachedResponse.json()) as FeedResponse
-          if (cachedData.success && cachedData.data.posts.length >= RSS_POST_COUNT) {
-            if (!cancelled) {
-              setPosts(cachedData.data.posts.slice(0, RSS_POST_COUNT))
-            }
-            return
-          }
-        }
-
-        const liveResponse = await fetch('/api/rss-update', {
-          method: 'POST',
-          cache: 'no-store',
-        })
-
-        if (!liveResponse.ok) {
-          return
-        }
-
-        const liveData = (await liveResponse.json()) as FeedResponse
-        if (liveData.success && liveData.data.posts.length > 0 && !cancelled) {
-          setPosts(liveData.data.posts.slice(0, RSS_POST_COUNT))
-        }
-      } catch {
-        // Keep fallback posts if network requests fail.
-      }
-    }
-
-    void loadPosts()
-
-    return () => {
+  return () => {
       cancelled = true
     }
   }, [])

@@ -1,6 +1,6 @@
 import { loadCachedFeedData, saveCachedFeedData, isFeedDataExpired, type CachedFeedData } from '@/lib/feed-cache'
-import { extractImageFromMarkup, stripHtml, truncateText, type FeedItem } from '@/lib/feed-utils'
-import { fallbackPosts, RSS_POST_COUNT, type RSSItem } from '@/lib/rss-feed-shared'
+import { extractImageFromMarkup, stripHtml, truncateText } from '@/lib/feed-utils'
+import { RSS_POST_COUNT, type RSSItem } from '@/lib/rss-feed-shared'
 
 const RSS_CACHE_FILE = '.rss-cache.json'
 const RSS_SOURCE_URL = 'https://redmonk.com/kholterhoff/feed/'
@@ -58,13 +58,15 @@ export function isRSSDataExpired(lastUpdated: string, maxAgeHours: number = 24):
 }
 
 export async function getRSSPosts(): Promise<RSSItem[]> {
-  const cachedData = await loadRSSData()
-
-  if (cachedData?.posts.length) {
-    return cachedData.posts.slice(0, RSS_POST_COUNT)
+  try {
+    // Fetch during server rendering; Next caches the response between page refreshes.
+    const data = await refreshRSSData(true)
+    return data.posts
+  } catch (error) {
+    console.error('Failed to refresh RedMonk posts:', error)
+    const cachedData = await loadRSSData()
+    return cachedData?.posts.slice(0, RSS_POST_COUNT) ?? []
   }
-
-  return fallbackPosts
 }
 
 export async function refreshRSSData(force: boolean = false): Promise<RSSData> {
@@ -80,6 +82,8 @@ export async function refreshRSSData(force: boolean = false): Promise<RSSData> {
   }
 
   const response = await fetch(RSS2JSON_URL, {
+    next: { revalidate: 300 },
+    signal: AbortSignal.timeout(10000),
     headers: {
       'User-Agent': 'Kate Holterhoff Portfolio RSS Reader',
     },
@@ -96,10 +100,18 @@ export async function refreshRSSData(force: boolean = false): Promise<RSSData> {
   }
 
   const rssData: RSSData = {
-    posts: jsonData.items.slice(0, RSS_POST_COUNT).map(mapRSSItem),
+    posts: jsonData.items
+      .map(mapRSSItem)
+      .sort((a, b) => Date.parse(b.pubDate) - Date.parse(a.pubDate))
+      .slice(0, RSS_POST_COUNT),
     lastUpdated: new Date().toISOString(),
   }
 
-  await saveRSSData(rssData)
+  // A temporary filesystem cache is optional on serverless hosts.
+  try {
+    await saveRSSData(rssData)
+  } catch (error) {
+    console.error('Failed to cache RedMonk posts:', error)
+  }
   return rssData
 }
